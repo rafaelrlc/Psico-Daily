@@ -1,0 +1,140 @@
+.body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.body * {
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+.left_login {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.left_login h1 {
+  color: #655dbb;
+  font-size: 3vw;
+}
+
+.right_login {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_login {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 35px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.card_login h1 {
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.input_error {
+  color: red;
+}
+.textfield {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.textfield input {
+  width: 100%;
+  border: none;
+  border-radius: 17px;
+  padding: 14px;
+  background-color: #ffffff;
+  color: black;
+  font-size: 12pt;
+  border: 1px solid rgb(202, 200, 200);
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 1.2rem;
+}
+
+.textfield label {
+  color: #030303de;
+  margin-bottom: 15px;
+}
+
+.textfield input::placeholder {
+  color: #aeaeae;
+  font-size: 15px;
+}
+
+.btn_login {
+  width: 100%;
+  padding: 13px 0px;
+  margin: 25px;
+  border-radius: 20px;
+  outline: none;
+  letter-spacing: 3px;
+  color: white;
+  background-color: #655dbb;
+  cursor: pointer;
+  border: none;
+}
+
+.btn_login:hover {
+  background-color: #514a9f;
+}
+
+.left_login_img {
+  width: 33vw;
+}
+
+@media only screen and (max-width: 950px) {
+  .card_login {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+  .left_login h1 {
+    display: none;
+  }
+
+  .left_login {
+    width: 100%;
+    height: auto;
+  }
+
+  .right_login {
+    width: 100%;
+    height: auto;
+  }
+
+  .left_login img {
+    width: 50vh;
+  }
+}
