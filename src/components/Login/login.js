@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { loginSchema } from "../../../utils/schemas/schemas";
 
@@ -18,6 +19,8 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
+  const router = useRouter();
+
   const [createAcc, setCreateAcc] = useState(true);
 
   const onSubmit = async (data) => {
@@ -30,6 +33,10 @@ const Login = () => {
       return;
     }
     reset();
+  };
+
+  const handleForgotPassword = () => {
+    router.push("/404");
   };
 
   return (
@@ -100,11 +107,31 @@ const Login = () => {
                 </span>
               </div>
             )}
-            <a className={styles.usr_btn}>
-              {createAcc
-                ? "Já possui uma conta? Faça Login"
-                : "Esqueceu a senha?"}
-            </a>
+            <div
+              className={styles.usr_btn}
+              onClick={() => {
+                if (createAcc) setCreateAcc(false);
+                else setCreateAcc(true);
+              }}
+            >
+              {createAcc ? (
+                <a>
+                  Já possui uma conta?{" "}
+                  <span className={styles.last_word}>Faça Login</span>
+                </a>
+              ) : (
+                <a>
+                  Não possui uma conta?{" "}
+                  <span className={styles.last_word}>Criar Conta</span>
+                </a>
+              )}
+            </div>
+
+            {!createAcc && (
+              <a className={styles.usr_btn2} onClick={handleForgotPassword}>
+                Esqueceu a senha?
+              </a>
+            )}
 
             <button className={styles.btn_login}>
               {!createAcc ? "Login" : "Registrar"}

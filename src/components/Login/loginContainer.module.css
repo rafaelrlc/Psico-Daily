@@ -109,9 +109,23 @@
 }
 
 .usr_btn {
-  color: #1f1b4a;
+  color: #000000;
   align-self: end;
+  margin-top: 1vh;
+  cursor: pointer;
+}
+
+.last_word {
+  color: #524ba2;
   text-decoration: underline;
+}
+
+.usr_btn2 {
+  color: #1f1b4a;
+  align-self: start;
+  text-decoration: underline;
+  cursor: pointer;
+  display: none;
 }
 
 .left_login_img {
