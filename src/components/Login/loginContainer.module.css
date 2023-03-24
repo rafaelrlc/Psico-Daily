@@ -56,6 +56,8 @@
 
 .input_error {
   color: red;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 .textfield {
   width: 100%;
@@ -104,6 +106,12 @@
 
 .btn_login:hover {
   background-color: #514a9f;
+}
+
+.usr_btn {
+  color: #1f1b4a;
+  align-self: end;
+  text-decoration: underline;
 }
 
 .left_login_img {

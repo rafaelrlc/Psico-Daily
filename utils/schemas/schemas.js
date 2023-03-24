@@ -16,7 +16,7 @@ export const loginSchema = yup.object({
     .required("Campo obrigatório.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Deve conter 8 caracteres, uma letra maiúscula um número e um caractere espeical"
+      "Deve conter 8 caracteres, uma letra maiúscula um número e um caractere especial."
     ),
   confirmPassword: yup
     .string()
@@ -24,6 +24,6 @@ export const loginSchema = yup.object({
     .required("Campo obrigatório.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Deve conter 8 caracteres, uma letra maiúscula um número e um caractere espeical"
+      "Deve conter 8 caracteres, uma letra maiúscula um número e um caractere especial."
     ),
 });
