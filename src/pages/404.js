@@ -15,25 +15,31 @@ const ErrorContainer = styled.div`
   }
 
   & button {
-    padding: 1rem;
+    padding: 2rem;
     background-color: #655dbb;
     color: white;
     border: none;
     border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
 
   & button:hover {
     background-color: #554da6;
     cursor: pointer;
   }
+
+  & h3 {
+    font-size: 1.75rem;
+  }
 `;
 
 export default function Custom404() {
   return (
     <ErrorContainer>
-      <img src="https://svgur.com/i/rSd.svg" alt="404page_img" height={"80%"} />
+      <img src="https://svgur.com/i/rTu.svg" alt="404page_img" height={"80%"} />
       <h3>Oops! Página não encontrada</h3>
-      <Link href="/login">
+      <Link href="/">
         <button color="blue">Ir para homepage</button>
       </Link>
     </ErrorContainer>

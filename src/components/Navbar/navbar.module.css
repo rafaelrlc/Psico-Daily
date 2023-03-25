@@ -1,0 +1,22 @@
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: #5b53b5;
+  padding: 1vh 6vh;
+}
+
+.rightSide_options {
+  margin-top: 6px;
+  display: flex;
+  gap: 0rem 2rem;
+}
+
+.rightSide_options h2:hover {
+  color: rgb(209, 209, 209);
+  cursor: pointer;
+}
+
+.main_logo:hover {
+  cursor: pointer;
+}

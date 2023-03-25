@@ -30,13 +30,38 @@
 
 .info {
   display: flex;
-  margin-top: 20vh;
+  margin-top: 15vh;
 }
 
 .left_info {
+  padding: 13vh 25vh;
+}
+.left_info h2 {
+  font-weight: bold;
+  font-size: 2.2rem;
+}
+
+.left_info h3 {
+  font-weight: 500;
 }
 
 .right_info img {
-  width: 33vw;
+  width: 40vw;
+
   align-self: end;
+  margin: 0;
+}
+
+.left_info button {
+  padding: 1.3rem 1rem;
+  background-color: black;
+  color: white;
+  font-size: 23px;
+  border-radius: 5px;
+}
+
+.left_info button:hover {
+  color: rgb(190, 189, 189);
+  background-color: rgb(20, 20, 20);
+  cursor: pointer;
 }
