@@ -1,0 +1,42 @@
+.body * {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.main_container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: #5b53b5;
+  padding: 1vh 4vh;
+}
+
+.rightSide_options {
+  margin-top: 6px;
+  display: flex;
+  gap: 0rem 2rem;
+}
+
+.rightSide_options h2:hover {
+  color: rgb(209, 209, 209);
+  cursor: pointer;
+}
+
+.info {
+  display: flex;
+  margin-top: 20vh;
+}
+
+.left_info {
+}
+
+.right_info img {
+  width: 33vw;
+  align-self: end;
+}

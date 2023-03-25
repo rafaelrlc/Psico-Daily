@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 import { loginSchema } from "../../../utils/schemas/schemas";
 
-const Login = () => {
+const Login = (props) => {
   const {
     register,
     handleSubmit,
@@ -21,7 +21,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const [createAcc, setCreateAcc] = useState(true);
+  const [createAcc, setCreateAcc] = useState(props.register);
 
   const onSubmit = async (data) => {
     console.log(data);
