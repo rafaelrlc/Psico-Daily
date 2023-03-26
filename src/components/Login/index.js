@@ -107,31 +107,42 @@ const Login = (props) => {
                 </span>
               </div>
             )}
-            <div
-              className={styles.usr_btn}
-              onClick={() => {
-                if (createAcc) setCreateAcc(false);
-                else setCreateAcc(true);
-              }}
-            >
-              {createAcc ? (
-                <a>
-                  Já possui uma conta?{" "}
-                  <span className={styles.last_word}>Faça Login</span>
-                </a>
-              ) : (
-                <a>
-                  Não possui uma conta?{" "}
-                  <span className={styles.last_word}>Criar Conta</span>
+            <div className={styles.usr_buttons}>
+              {!createAcc && (
+                <a className={styles.usr_btn2} onClick={handleForgotPassword}>
+                  Esqueceu a senha?
                 </a>
               )}
+              <div className={styles.usr_btn}>
+                {createAcc ? (
+                  <a>
+                    Já possui uma conta?{" "}
+                    <span
+                      className={styles.last_word}
+                      onClick={() => {
+                        if (createAcc) router.push("/login");
+                        else router.push("/register");
+                      }}
+                    >
+                      Faça Login
+                    </span>
+                  </a>
+                ) : (
+                  <a>
+                    Não possui uma conta?{" "}
+                    <span
+                      className={styles.last_word}
+                      onClick={() => {
+                        if (createAcc) router.push("/login");
+                        else router.push("/register");
+                      }}
+                    >
+                      Criar Conta
+                    </span>
+                  </a>
+                )}
+              </div>
             </div>
-
-            {!createAcc && (
-              <a className={styles.usr_btn2} onClick={handleForgotPassword}>
-                Esqueceu a senha?
-              </a>
-            )}
 
             <button className={styles.btn_login}>
               {!createAcc ? "Login" : "Registrar"}

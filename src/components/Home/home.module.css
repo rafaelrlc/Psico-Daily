@@ -23,7 +23,7 @@
   gap: 0rem 2rem;
 }
 
-.rightSide_options h2:hover {
+.rightSide_options h1:hover {
   color: rgb(209, 209, 209);
   cursor: pointer;
 }
@@ -36,18 +36,17 @@
 .left_info {
   padding: 13vh 25vh;
 }
-.left_info h2 {
+.left_info h1 {
   font-weight: bold;
   font-size: 2.2rem;
 }
 
-.left_info h3 {
+.left_info h2 {
   font-weight: 500;
 }
 
 .right_info img {
   width: 40vw;
-
   align-self: end;
   margin: 0;
 }
@@ -58,10 +57,12 @@
   color: white;
   font-size: 23px;
   border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .left_info button:hover {
   color: rgb(190, 189, 189);
   background-color: rgb(20, 20, 20);
   cursor: pointer;
+  transform: rotate(-1.1deg);
 }

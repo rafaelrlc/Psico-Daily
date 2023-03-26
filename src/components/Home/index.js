@@ -9,11 +9,11 @@ const Homepage = () => {
       <Navbar></Navbar>
       <div className={styles.info}>
         <div className={styles.left_info}>
-          <h2>Para quem é o PsicoDaily?</h2>
-          <h3>
+          <h1>Para quem é o PsicoDaily?</h1>
+          <h2>
             Caso esteja a procura de acompanhamento psicológico, ou deseja
             divulgar seu trabalho como profissional, o PsicoDaily é pra você!
-          </h3>
+          </h2>
           <button
             onClick={() => {
               router.push("/register");

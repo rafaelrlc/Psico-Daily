@@ -117,15 +117,21 @@
 
 .last_word {
   color: #524ba2;
-  text-decoration: underline;
+  font-weight: bold;
+}
+
+.usr_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .usr_btn2 {
-  color: #1f1b4a;
+  color: #000000;
   align-self: start;
-  text-decoration: underline;
   cursor: pointer;
-  display: none;
+  margin-top: 1vh;
+  text-decoration: underline;
 }
 
 .left_login_img {
