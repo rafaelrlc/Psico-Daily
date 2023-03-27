@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
+import Navbar from "../Navbar/Navbar";
 import { loginSchema } from "../../../utils/schemas/schemas";
 
 const Login = (props) => {
@@ -46,6 +46,7 @@ const Login = (props) => {
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar></Navbar>
       <form className={styles.main} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.right_login}>
           <div className={styles.card_login}>
@@ -107,41 +108,24 @@ const Login = (props) => {
                 </span>
               </div>
             )}
-            <div className={styles.usr_buttons}>
-              {!createAcc && (
-                <a className={styles.usr_btn2} onClick={handleForgotPassword}>
-                  Esqueceu a senha?
+            <div
+              className={styles.usr_btn}
+              onClick={() => {
+                if (createAcc) router.push("/login");
+                else router.push("/register");
+              }}
+            >
+              {createAcc ? (
+                <a>
+                  Já possui uma conta?{" "}
+                  <span className={styles.last_word}>Faça Login</span>
+                </a>
+              ) : (
+                <a>
+                  Não possui uma conta?{" "}
+                  <span className={styles.last_word}>Criar Conta</span>
                 </a>
               )}
-              <div className={styles.usr_btn}>
-                {createAcc ? (
-                  <a>
-                    Já possui uma conta?{" "}
-                    <span
-                      className={styles.last_word}
-                      onClick={() => {
-                        if (createAcc) router.push("/login");
-                        else router.push("/register");
-                      }}
-                    >
-                      Faça Login
-                    </span>
-                  </a>
-                ) : (
-                  <a>
-                    Não possui uma conta?{" "}
-                    <span
-                      className={styles.last_word}
-                      onClick={() => {
-                        if (createAcc) router.push("/login");
-                        else router.push("/register");
-                      }}
-                    >
-                      Criar Conta
-                    </span>
-                  </a>
-                )}
-              </div>
             </div>
 
             <button className={styles.btn_login}>
