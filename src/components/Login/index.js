@@ -151,7 +151,7 @@ const Login = (props) => {
         </div>
         <div className={styles.left_login}>
           <img
-            src="https://svgur.com/i/rRj.svgs"
+            src="https://raw.githubusercontent.com/rafaelrlc/Psico-Daily/8c43b2e8e3d74720a8588b64a55d98597a73e55a/anxiety-animate.svg"
             alt="login_page_img"
             className={styles.left_login_img}
           />

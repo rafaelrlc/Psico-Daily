@@ -112,6 +112,9 @@
   color: #000000;
   align-self: end;
   margin-top: 1vh;
+}
+
+.usr_btn span {
   cursor: pointer;
 }
 
@@ -123,7 +126,8 @@
 .usr_buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 10rem;
 }
 
 .usr_btn2 {
