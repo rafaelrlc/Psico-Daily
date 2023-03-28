@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styles from "./navbar.module.css";
+import Link from "next/link";
 
 const Navbar = () => {
   const router = useRouter();
@@ -24,7 +25,11 @@ const Navbar = () => {
         >
           Registro
         </h2>
-        <h2>Sobre</h2>
+        <h2>
+          <Link href={"/#about"} className={styles.aboutName}>
+            Sobre
+          </Link>
+        </h2>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
-import Patients from "@/components/Psicologo/patients";
+import Patients from "@/components/Psicologo/patientsList";
 import styles from "./menupaciente.module.css";
 import { useState } from "react";
 

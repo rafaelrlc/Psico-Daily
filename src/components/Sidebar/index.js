@@ -15,7 +15,7 @@ const Sidebar = (props) => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.usr_info}>
-        <h2>Dr. Rafael Ribeiro L. </h2>
+        <h2>Dr. Eduardo Marques</h2>
         <img src="https://media.discordapp.net/attachments/714891795129171983/1090098517411889202/149071.png?width=1024&height=1024" />
       </div>
       {props.menuPsicologo && (

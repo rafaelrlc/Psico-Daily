@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Homepage from "@/components/Home";
-import Patients from "@/components/Psicologo/patients";
+import Patients from "@/components/Psicologo/patientsList";
 import { useEffect } from "react";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";

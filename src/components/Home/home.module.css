@@ -3,6 +3,16 @@
   margin: 0;
 }
 
+.test {
+  font-weight: bold;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.test_p {
+  font-size: 1.15rem;
+}
+
 .main_container {
   width: 100vw;
   height: 100vh;
@@ -67,6 +77,13 @@
   transform: rotate(-1.1deg);
 }
 
+.about {
+  margin: 1em auto;
+  padding-bottom: 2rem;
+  width: 75%;
+  font-size: 0.95remm2;
+}
+
 /* 1344px (Smaller desktops) */
 
 @media (max-width: 84em) {
@@ -103,10 +120,6 @@
   .left_info {
     padding: 10vh;
   }
-}
-
-.about {
-  padding: 13vh 25vh;
 }
 
 /* 944px (Tablets) */

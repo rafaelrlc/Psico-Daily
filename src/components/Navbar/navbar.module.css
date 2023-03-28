@@ -13,6 +13,10 @@
   gap: 0rem 2rem;
 }
 
+.aboutName {
+  color: white;
+  text-decoration: none;
+}
 .rightSide_options h2 {
   font-weight: 100;
 }
