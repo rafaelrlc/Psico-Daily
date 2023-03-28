@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import AuthContext from "./authContext";
 
 const AuthContextProvider = ({ children }) => {
@@ -6,7 +6,7 @@ const AuthContextProvider = ({ children }) => {
     typeof window !== "undefined" ? localStorage.getItem("token") : null
   );
 
-  const loginHandler = (token, role) => {
+  const loginHandler = (token) => {
     setToken(token);
     if (typeof window !== "undefined") {
       localStorage.setItem("token", token);
@@ -32,3 +32,4 @@ const AuthContextProvider = ({ children }) => {
 };
 
 export default AuthContextProvider;
+export const useAuth = () => useContext(AuthContext);

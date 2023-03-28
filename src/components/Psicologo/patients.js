@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import styles from "./patients.module.css";
+import styles from "../../../styles/patients.module.css";
 import PatientReport from "./patientReport";
 const fictionalPatientes = [
   {
@@ -22,12 +22,11 @@ const fictionalPatientes = [
   },
   {
     key: 3,
-    name: "Virgínia Fonseca",
+    name: "Iggor Raphael",
     userIcone:
       "https://media.discordapp.net/attachments/714891795129171983/1090048913295294514/179012210_4551639534941718_6061324844753987059_n.jpg?width=513&height=514",
     nextSession: "Próxima Sessão: 02/04/2023 - 9:00",
-    report:
-      "Útimo Relato (27/03/2023): Estou com medo de IAs tomar meu trabalho como artista.",
+    report: "Útimo Relato (27/03/2023): Estou com medo da prova do Detran.",
   },
 
   {

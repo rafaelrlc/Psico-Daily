@@ -15,7 +15,7 @@ const HomePsicologo = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/psicologo/menu");
+    router.push("/psicologo/pacientes");
   });
   return <LoadingSpinner>Loading...</LoadingSpinner>;
 };

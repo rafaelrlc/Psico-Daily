@@ -7,16 +7,19 @@ import { useForm } from "react-hook-form";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Navbar from "../Navbar/Navbar";
-
 import { loginSchema } from "../../../utils/schemas/schemas";
 import { registerSchema } from "../../../utils/schemas/schemas";
 
+import { useContext } from "react";
+import AuthContext from "@/context/auth/authContext";
 let databaseLogins = [
   {
+    uid: "2423423424928adapodkpoaskdaspo",
     email: "rafael@gmail.com",
     password: "Rafael123!",
   },
   {
+    uid: "93904239048dsjojsdoifjsiofjsdo",
     email: "eduardo@gmail.com",
     password: "Eduardo123!",
   },
@@ -36,6 +39,8 @@ const Login = (props) => {
 
   const router = useRouter();
 
+  const auth = useContext(AuthContext);
+
   console.log(createAcc);
 
   const onSubmit = (data) => {
@@ -53,6 +58,7 @@ const Login = (props) => {
 
     if (user) {
       console.log("logado");
+      auth.login(user.uid);
       router.push("/psicologo");
     } else {
       console.log("conta nao existe");

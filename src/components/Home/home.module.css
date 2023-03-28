@@ -101,8 +101,12 @@
   }
 
   .left_info {
-    padding: 10vh vh;
+    padding: 10vh;
   }
+}
+
+.about {
+  padding: 13vh 25vh;
 }
 
 /* 944px (Tablets) */
