@@ -7,45 +7,58 @@ import { useForm } from "react-hook-form";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Navbar from "../Navbar/Navbar";
+
 import { loginSchema } from "../../../utils/schemas/schemas";
+import { registerSchema } from "../../../utils/schemas/schemas";
+
+let databaseLogins = [
+  {
+    email: "rafael@gmail.com",
+    password: "Rafael123!",
+  },
+];
 
 const Login = (props) => {
+  const [createAcc, setCreateAcc] = useState(props.register);
   const {
     register,
     handleSubmit,
     watch,
     reset,
-
     formState: { errors },
-  } = useForm({ resolver: yupResolver(loginSchema) });
+  } = useForm({
+    resolver: yupResolver(createAcc ? registerSchema : loginSchema),
+  });
 
   const router = useRouter();
 
-  const [createAcc, setCreateAcc] = useState(props.register);
+  console.log(createAcc);
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     console.log(data);
-    if (
-      data.confirmPassword !== data.password &&
-      data.email !== data.confirmEmail
-    ) {
-      console.log("inavlidlo");
+    if (createAcc) {
+      reset();
       return;
+    }
+
+    const { email, password } = data;
+
+    const user = databaseLogins.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      console.log("logado");
+      router.push("/psicologo");
+    } else {
+      console.log("conta nao existe");
+      router.push("/404");
     }
     reset();
   };
 
-  const handleForgotPassword = () => {
-    router.push("/404");
-  };
-
   return (
     <>
-      <Head>
-        <title>PsicoDaily</title>
-        <meta name="description" content="" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Navbar></Navbar>
       <form className={styles.main} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.right_login}>
@@ -58,6 +71,7 @@ const Login = (props) => {
                   type="text"
                   placeholder="Nome completo"
                   {...register("fullname")}
+                  id="fullname"
                 ></input>
                 <span className={styles.input_error}>
                   {errors?.fullname?.message}
@@ -69,6 +83,7 @@ const Login = (props) => {
                 type="text"
                 placeholder="E-mail"
                 {...register("email")}
+                id="email"
               ></input>
               <span className={styles.input_error}>
                 {errors?.email?.message}
@@ -80,6 +95,7 @@ const Login = (props) => {
                   type="text"
                   placeholder="Repetir E-mail"
                   {...register("confirmEmail")}
+                  id="confirmEmail"
                 ></input>
                 <span className={styles.input_error}>
                   {errors?.confirmEmail?.message}
@@ -91,6 +107,7 @@ const Login = (props) => {
                 type="password"
                 placeholder="Senha"
                 {...register("password")}
+                id="password"
               ></input>
               <span className={styles.input_error}>
                 {errors?.password?.message}
@@ -102,6 +119,7 @@ const Login = (props) => {
                   type="password"
                   placeholder="Repetir Senha"
                   {...register("confirmPassword")}
+                  id="confirmPassword"
                 ></input>
                 <span className={styles.input_error}>
                   {errors?.confirmPassword?.message}
