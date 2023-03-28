@@ -1,0 +1,48 @@
+.main_container {
+  margin-left: 7rem;
+  width: 80%;
+}
+
+.main_container input {
+  border-radius: 1rem;
+  border: 1px solid gray;
+  background-color: #3e54ac;
+  color: white;
+}
+
+.main_container input::placeholder {
+  color: rgb(227, 225, 225);
+}
+
+.upbar {
+  display: flex;
+  margin-bottom: 3rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.patient_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.next_session {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.down_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+
+.down_container img {
+  width: 75px;
+  height: 75px;
+  border-radius: 40px;
+  margin-right: 1rem;
+}
