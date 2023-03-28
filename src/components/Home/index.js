@@ -23,7 +23,10 @@ const Homepage = () => {
           </button>
         </div>
         <div className={styles.right_info}>
-          <img src="https://svgur.com/i/rS_.svg" alt="homepage_page_img" />
+          <img
+            src="https://raw.githubusercontent.com/rafaelrlc/Psico-Daily/83cb506b50cb590ee0a9b2acfc2f218867534df0/utils/rS_.svg"
+            alt="homepage_page_img"
+          />
         </div>
       </div>
     </div>

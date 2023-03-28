@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Homepage from "@/components/Home";
+import Patients from "@/components/Patients";
 export default function Home() {
   return (
     <>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 const Sidebar = () => {
   return (
-    <>
+    <div className={styles.wrapper}>
       <div className={styles.sidebar}>
         <div className={styles.usr_info}>
           <h2>Dr. Eduardo Marques</h2>
@@ -40,7 +40,7 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

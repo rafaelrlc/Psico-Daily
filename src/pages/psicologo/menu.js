@@ -1,5 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
+import Patients from "@/components/Patients";
 const MenuPsicologo = () => {
   return (
     <div>
@@ -8,7 +9,8 @@ const MenuPsicologo = () => {
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar>oi</Sidebar>
+      <Sidebar></Sidebar>
+      <Patients></Patients>
     </div>
   );
 };

@@ -16,6 +16,10 @@ let databaseLogins = [
     email: "rafael@gmail.com",
     password: "Rafael123!",
   },
+  {
+    email: "eduardo@gmail.com",
+    password: "Eduardo123!",
+  },
 ];
 
 const Login = (props) => {
