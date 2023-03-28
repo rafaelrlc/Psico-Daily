@@ -1,6 +1,5 @@
 .main_container {
-  margin-left: 7rem;
-  width: 80%;
+  margin-left: 25rem;
 }
 
 .main_container input {
@@ -45,4 +44,34 @@
   height: 75px;
   border-radius: 40px;
   margin-right: 1rem;
+}
+
+/* 1344px (Smaller desktops) */
+
+@media (min-width: 84em) {
+  .main_container {
+    margin-left: 20rem;
+  }
+}
+
+@media (max-width: 84em) {
+  .main_container {
+    margin-left: 20rem;
+  }
+}
+
+/*  1200px (Landscape Tablets) */
+
+@media (max-width: 75em) {
+  .main_container {
+    margin-left: 20rem;
+  }
+}
+
+/* 944px (Tablets) */
+
+@media (max-width: 59em) {
+  .main_container {
+    margin-left: 12rem;
+  }
 }

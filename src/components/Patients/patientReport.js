@@ -5,6 +5,18 @@ const DownContainer = styled.li`
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding: 0.95rem;
+  margin-right: 2rem;
+
+  &:hover {
+    background-color: rgb(221, 221, 221);
+    border-radius: 2rem;
+    cursor: pointer;
+  }
+
+  &:last-child {
+    margin-bottom: 3rem;
+  }
 
   & img {
     width: 80px;
