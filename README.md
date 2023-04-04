@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## PsicoDaily
 
+![My Image](image.png)
+
+
 Node. js v12. 22.0 is required.
 
 
