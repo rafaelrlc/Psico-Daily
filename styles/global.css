@@ -4,4 +4,10 @@ body {
   font-family: "Maven Pro", sans-serif;
   background-color: rgb(255, 255, 255);
   margin: 0;
+  scroll-behavior: smooth;
+}
+
+html {
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
 }

@@ -11,7 +11,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     console.log("rodou");
-    if (auth.accessToken) {
+    if (auth.accessToken !== null) {
       router.push("/psicologo/");
     }
   }, []);

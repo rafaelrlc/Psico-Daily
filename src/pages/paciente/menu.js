@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import Patients from "@/components/Psicologo/patientsList";
-import styles from "./menupaciente.module.css";
+import styless from "../../../styles/menupaciente.module.css";
 import { useState } from "react";
 
 const MenuPaciente = ({ optionValue }) => {

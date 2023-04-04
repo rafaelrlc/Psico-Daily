@@ -42,7 +42,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 30px 35px;
   background-color: #ffffff;
   border-radius: 20px;
 }
@@ -145,6 +144,10 @@
   .card_login {
     width: 85%;
   }
+
+  .left_login img {
+    width: 20vw;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -166,6 +169,6 @@
   }
 
   .left_login img {
-    width: 50vh;
+    width: 40vh;
   }
 }

@@ -2,6 +2,7 @@ import styles from "./home.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Navbar from "../Navbar/Navbar";
+
 const Homepage = () => {
   const router = useRouter();
   return (
