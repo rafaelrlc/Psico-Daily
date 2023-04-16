@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ![My Image](image.png)
 
 
-Node. js v12. 22.0 is required.
+Node. js v14.6.0 +
 
 
 Install dependencies of the project:
