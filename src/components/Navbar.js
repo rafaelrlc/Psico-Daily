@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 md:h-[12vh] h-[10vh] bg-[#574dc1] border-gray-200 shadow-md">
+      <div className="flex items-center justify-between w-full px-14 md:h-[11vh] h-[10vh] bg-[#574dc1] border-gray-200 custom-shadow">
         <div>
           <a
             className="flex items-center hover:cursor-pointer"

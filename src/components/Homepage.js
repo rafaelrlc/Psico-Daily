@@ -6,9 +6,9 @@ const Homepage = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="flex md:flex-row flex-col justify-center items-center max-w-[1640px] lg:h-[88vh] h-[90vh] mx-auto md:gap-0 gap-10">
+      <div className="flex md:flex-row flex-col justify-center items-center max-w-[1840px] lg:h-[89vh] h-[90vh] mx-auto md:gap-0 gap-10">
         <div></div>
-        <div className="flex flex-col lg:ml-24 mx-10 lg:mt-0 items-center lg:items-start justify-center max-w-[630px]">
+        <div className="flex flex-col lg:ml-24 mx-10 lg:mt-0 items-center lg:items-start justify-center max-w-[750px]">
           <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
             Para quem é o PsicoDaily?
           </h1>
@@ -17,7 +17,7 @@ const Homepage = () => {
             divulgar seu trabalho como profissional, o PsicoDaily é pra você!
           </h2>
           <button
-            className="py-6 leading-none md:w-[280px] w-full  shadow-lg bg-black text-white rounded text-2xl hover:cursor-pointer hover:rotate-[-1deg] mt-5"
+            className="py-[1.15rem] md:w-[250px] w-full  shadow-lg bg-black text-white rounded text-2xl hover:cursor-pointer hover:rotate-[-1.25deg] mt-5"
             onClick={() => {
               router.push("/register");
             }}
