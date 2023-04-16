@@ -1,10 +1,10 @@
-import Login from "@/components/Login";
+import LoginPage2 from "@/components/Login";
 import Navbar from "@/components/Navbar/Navbar";
 import { Fragment } from "react";
 const LoginPage = () => {
   return (
     <Fragment>
-      <Login register={true}></Login>
+      <LoginPage2 register={true}></LoginPage2>
     </Fragment>
   );
 };

@@ -9,13 +9,13 @@ const Navbar = () => {
 
   return (
     <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 md:h-[12vh] h-[10vh] bg-[#635acb] border-gray-200 shadow-md">
+      <div className="flex items-center justify-between w-full px-14 md:h-[12vh] h-[10vh] bg-[#574dc1] border-gray-200 shadow-md">
         <div>
           <a
             className="flex items-center hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
-            <span className="self-center text-[1.85rem] font-bold whitespace-nowrap hover:rotate-[-1deg] ">
+            <span className="self-center text-[2rem] font whitespace-nowrap hover:rotate-[-1deg] ">
               PsicoDaily
             </span>
           </a>
@@ -23,17 +23,17 @@ const Navbar = () => {
         <ul className="md:flex text-[1.4rem] space-x-8  hidden">
           <li
             onClick={() => router.push("/login")}
-            className="hover:cursor-pointer hover:rotate-[-1deg] "
+            className="hover:cursor-pointer hover:rotate-[-2deg] "
           >
             <a className="block rounded hover:text-gray-300">Login</a>
           </li>
           <li
             onClick={() => router.push("/register")}
-            className="hover:cursor-pointer hover:rotate-[-1deg]"
+            className="hover:cursor-pointer hover:rotate-[-2deg]"
           >
             <a className="block rounded hover:text-gray-300">Registrar</a>
           </li>
-          <li className="hover:cursor-pointer hover:rotate-[-1deg]">
+          <li className="hover:cursor-pointer hover:rotate-[-2deg]">
             <a href="#sobre" className="block rounded hover:text-gray-300">
               Sobre
             </a>
@@ -59,7 +59,7 @@ const Navbar = () => {
         <div
           className={
             mobileNav
-              ? "fixed left-0 top-0 w-[60%] h-full  bg-[#484199] ease-in-out duration-500 md:hidden"
+              ? "fixed left-0 top-0 w-[60%] h-full  bg-[#574dc1] ease-in-out duration-500 md:hidden"
               : "fixed left-[-100%]"
           }
         >
