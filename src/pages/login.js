@@ -1,10 +1,9 @@
-import Navbar from "@/components/Navbar/Navbar";
 import { Fragment } from "react";
-import LoginPage2 from "@/components/Login";
+import Login from "@/components/Login";
 const LoginPage = () => {
   return (
     <Fragment>
-      <LoginPage2 register={false}></LoginPage2>
+      <Login register={false}></Login>
     </Fragment>
   );
 };

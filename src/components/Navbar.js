@@ -15,7 +15,7 @@ const Navbar = () => {
             className="flex items-center hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
-            <span className="self-center text-[2rem] font whitespace-nowrap hover:rotate-[-1deg] ">
+            <span className="self-center text-[2rem] font-bold whitespace-nowrap hover:rotate-[-1deg] ">
               PsicoDaily
             </span>
           </a>
@@ -59,7 +59,7 @@ const Navbar = () => {
         <div
           className={
             mobileNav
-              ? "fixed left-0 top-0 w-[60%] h-full  bg-[#574dc1] ease-in-out duration-500 md:hidden"
+              ? "fixed left-0 top-0 w-[65%] h-full bg-[#574dc1] md:hidden"
               : "fixed left-[-100%]"
           }
         >

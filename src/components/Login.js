@@ -2,7 +2,7 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 import { loginSchema } from "../../utils/schemas/schemas";
 import { registerSchema } from "../../utils/schemas/schemas";
 import { useContext } from "react";
