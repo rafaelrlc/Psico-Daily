@@ -39,7 +39,7 @@ const Navbar = () => {
             </a>
           </li>
         </ul>{" "}
-        {!mobileNav && (
+        {mobileNav && (
           <div
             onClick={() => setMobileNav(!mobileNav)}
             className="block md:hidden ml-100"
@@ -55,37 +55,35 @@ const Navbar = () => {
         )}
       </div>
 
-      {mobileNav && (
-        <div
-          className={
-            mobileNav
-              ? "fixed left-0 top-0 w-[65%] h-full bg-[#574dc1] md:hidden"
-              : "fixed left-[-100%]"
-          }
-        >
-          <div className="flex items-center justify-center p-4">
-            <h1 className="w-full text-3xl font-bold text-white">PsicoDaily</h1>
-            <MdOutlineClose
-              className="text-2xl hover:cursor-pointer"
-              onClick={() => setMobileNav(!mobileNav)}
-            ></MdOutlineClose>
-          </div>
-
-          <ul className="flex flex-col gap-8 text-xl mt-5 items-start justify-center ">
-            <li
-              className={`p-4   hover:bg-[#5850ad] cursor-pointer transition-all duration-200 ease-in-out w-full`}
-            >
-              <a onClick={() => router.push("/login")}>Login</a>
-            </li>
-            <li className="p-4 hover:bg-[#5850ad] cursor-pointer transition-all duration-200 ease-in-out w-full">
-              <a onClick={() => router.push("/register")}>Registrar</a>
-            </li>
-            <li className="p-4   hover:bg-[#5850ad] cursor-pointer transition-all duration-200 ease-in-out w-full">
-              <a href="#about">Sobre</a>
-            </li>
-          </ul>
+      <div
+        className={
+          !mobileNav
+            ? "fixed left-0 top-0 w-[60%] h-full bg-[#574dc1] ease-in-out duration-500 md:hidden"
+            : "fixed left-[-100%]"
+        }
+      >
+        <div className="flex items-center justify-center p-4">
+          <h1 className="w-full text-3xl font-bold text-white">PsicoDaily</h1>
+          <MdOutlineClose
+            className="text-2xl hover:cursor-pointer"
+            onClick={() => setMobileNav(!mobileNav)}
+          ></MdOutlineClose>
         </div>
-      )}
+
+        <ul className="flex flex-col gap-8 text-xl mt-5 items-start justify-center ">
+          <li
+            className={`p-4   cursor-pointer transition-all duration-200 ease-in-out w-full`}
+          >
+            <a onClick={() => router.push("/login")}>Login</a>
+          </li>
+          <li className="p-4 cursor-pointer transition-all duration-200 ease-in-out w-full">
+            <a onClick={() => router.push("/register")}>Registrar</a>
+          </li>
+          <li className="p-4   cursor-pointer transition-all duration-200 ease-in-out w-full">
+            <a href="#about">Sobre</a>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };

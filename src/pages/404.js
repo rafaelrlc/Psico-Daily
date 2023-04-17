@@ -5,7 +5,7 @@ const ErrorContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+
   height: 100vh;
   background: white;
   flex-direction: column;
@@ -32,8 +32,9 @@ const ErrorContainer = styled.div`
     cursor: pointer;
   }
 
-  & h3 {
+  & h1 {
     font-size: 1.75rem;
+    margin-bottom: 2rem;
   }
 
   /* 1344px (Smaller desktops) */
@@ -49,16 +50,6 @@ const ErrorContainer = styled.div`
       font-size: 1.45rem;
     }
   }
-
-  /*  1200px (Landscape Tablets) */
-
-  @media (max-width: 75em) {
-  }
-
-  /* 944px (Tablets) */
-
-  @media (max-width: 59em) {
-  }
 `;
 
 export default function Custom404() {
@@ -68,7 +59,7 @@ export default function Custom404() {
         src="https://raw.githubusercontent.com/rafaelrlc/Psico-Daily/59d728a2bedef958a3162c0e3778c97eeb4f3d33/utils/images/404-image.svg"
         alt="404page_img"
       />
-      <h3>Oops! Página não encontrada</h3>
+      <h1>Oops! Página não encontrada</h1>
       <Link href="/">
         <button color="blue">Ir para homepage</button>
       </Link>
