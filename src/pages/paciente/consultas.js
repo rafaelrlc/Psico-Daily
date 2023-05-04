@@ -1,12 +1,12 @@
+import React from "react";
 import Navbar from "@/components/Navbar/Navbar";
-
-const Consultas = () => {
+const consulta = () => {
   return (
     <div>
-      <Navbar type="psico" />
+      <Navbar type="patient" />
       <h1>consultas</h1>
     </div>
   );
 };
 
-export default Consultas;
+export default consulta;

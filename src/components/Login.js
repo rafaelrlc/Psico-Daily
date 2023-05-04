@@ -2,72 +2,103 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Navbar from "./Navbar";
-import { loginSchema } from "../../utils/schemas/schemas";
-import { registerSchema } from "../../utils/schemas/schemas";
+import Navbar from "./Navbar/Navbar";
+import {
+  registerPacienteSchema,
+  registerPsicologoSchema,
+  loginSchema,
+} from "../../utils/schemas/schemas";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
-
-let databaseLogins = [
-  {
-    uid: "2423423424928adapodkpoaskdaspo",
-    email: "rafael@gmail.com",
-    password: "Rafael123!",
-  },
-  {
-    uid: "93904239048dsjojsdoifjsiofjsdo",
-    email: "eduardo@gmail.com",
-    password: "Eduardo123!",
-  },
-];
+import api from "@/services/api";
 
 const Login = (props) => {
   const [createAcc, setCreateAcc] = useState(props.register);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(createAcc ? registerSchema : loginSchema),
+    resolver: yupResolver(createAcc ? registerPacienteSchema : loginSchema),
   });
 
   const router = useRouter();
 
   const auth = useContext(AuthContext);
 
-  console.log(createAcc);
+  const config = {
+    headers: { "Content-Type": "application/json" },
+  };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const loginUser = async (email, password) => {
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await api.post("/login", data, config);
+
+      console.log(response);
+      auth.setRole(response.data.type);
+      auth.login(response.data.token);
+
+      if (response.data.type == "Paciente") {
+        console.log("FOI:", response.data.type);
+        router.push("/paciente/registro");
+      }
+      if (response.data.type == "Psicologo") {
+        router.push("/psicologo/info");
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("caiu no catch");
+      if (error.response && error.response.status === 401) {
+        setWrongCredentials(true);
+      }
+    }
+  };
+
+  const onSubmit = async (data) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        cpf: data.cpf,
+      }),
+    };
+
+    console.log(requestOptions);
+
     if (createAcc) {
-      reset();
-      return;
-    }
+      try {
+        const response = await fetch(
+          "http://localhost:3000/pac_register",
+          requestOptions
+        );
 
-    const { email, password } = data;
-
-    const user = databaseLogins.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (user) {
-      console.log("logado");
-      auth.login(user.uid);
-      router.push("/psicologo");
+        console.log(response);
+        loginUser(data.email, data.password);
+      } catch (error) {
+        console.log(error);
+        console.log("caiu no erro");
+      }
     } else {
-      console.log("conta nao existe");
-      router.push("/404");
+      loginUser(data.email, data.password);
     }
-    reset();
   };
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar type={"menu"} />
       <form
-        className="flex items-center h-[88vh] "
+        className="flex items-center h-[89vh] "
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">
@@ -79,12 +110,26 @@ const Login = (props) => {
                 <input
                   className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
                   type="text"
-                  {...register("fullname")}
+                  {...register("name")}
                   placeholder="Nome completo"
-                  id="fullname"
+                  id="name"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5">
-                  {errors?.fullname?.message}
+                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                  {errors?.name?.message}
+                </span>
+              </div>
+            )}
+            {createAcc && (
+              <div className="w-full flex flex-col justify-center items-start">
+                <input
+                  className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                  type="text"
+                  {...register("cpf")}
+                  placeholder="CPF"
+                  id="cpf"
+                ></input>
+                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                  {errors?.cpf?.message}
                 </span>
               </div>
             )}
@@ -96,9 +141,14 @@ const Login = (props) => {
                 {...register("email")}
                 id="email"
               ></input>
-              <span className="text-red-600 mt-1.5 ml-1.5">
+              <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
                 {errors?.email?.message}
               </span>
+              {wrongCredentials && (
+                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                  Credenciais Inválidas
+                </span>
+              )}
             </div>
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
@@ -109,7 +159,7 @@ const Login = (props) => {
                   {...register("confirmEmail")}
                   id="confirmEmail"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
                   {errors?.confirmEmail?.message}
                 </span>
               </div>
@@ -122,9 +172,14 @@ const Login = (props) => {
                 {...register("password")}
                 id="password"
               ></input>
-              <span className="text-red-600 mt-1.5 ml-1.5">
+              <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
                 {errors?.password?.message}
               </span>
+              {wrongCredentials && (
+                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                  Credenciais Inválidas
+                </span>
+              )}
             </div>
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
@@ -135,13 +190,13 @@ const Login = (props) => {
                   {...register("confirmPassword")}
                   id="confirmPassword"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5">
+                <span className="text-red-600 mt-1.65 ml-1.5 text-sm">
                   {errors?.confirmPassword?.message}
                 </span>
               </div>
             )}
             <div
-              className="text-black self-end ml-1.5"
+              className="text-black self-end ml-1.5 mt-1.5"
               onClick={() => {
                 if (createAcc) router.push("/login");
                 else router.push("/register");
@@ -157,14 +212,14 @@ const Login = (props) => {
               ) : (
                 <a>
                   Não possui uma conta?{" "}
-                  <span className="text-indigo-700 font-medium hover:cursor-pointer">
+                  <span className="text-indigo-700 font-bold hover:cursor-pointer">
                     Criar Conta
                   </span>
                 </a>
               )}
             </div>
 
-            <button className="w-full py-3 mx-6 my-4 rounded-2xl outline-none tracking-wider text-white bg-[#655dbb] hover:bg-[#514a9f] cursor-pointer border-none">
+            <button className="w-full py-3 mx-6 my-4 rounded-2xl outline-none tracking-wider text-white bg-[#574dc1] hover:bg-[#3b30b9] cursor-pointer border-none">
               {!createAcc ? "Login" : "Registrar"}
             </button>
           </div>

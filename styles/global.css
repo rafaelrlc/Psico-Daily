@@ -2,15 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: rgb(248, 248, 249);
+  --secondary: #5e57b4;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap");
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
+}
+
 body {
   background-color: rgb(255, 255, 255);
   margin: 0;
   scroll-behavior: smooth;
-  font-family: "Dynapuff", monospace;
+  font-family: "Rubik", sans-serif;
 }
 
 html {
@@ -21,5 +48,27 @@ html {
 /* Custom Styles */
 
 .custom-shadow {
-  box-shadow: 0px 2px 2px 1.5px rgb(144, 143, 144);
+  box-shadow: 0px 2px 2px 1.25px rgb(144, 143, 144);
+}
+
+.custom-scrollbar-mobile::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.custom-scrollbar-mobile {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (min-width: 768px) {
+  .custom-scrollbar-mobile::-webkit-scrollbar {
+    width: auto;
+    background: initial;
+  }
+
+  .custom-scrollbar-mobile {
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
+  }
 }

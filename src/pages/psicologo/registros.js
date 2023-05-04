@@ -1,6 +1,11 @@
-import MenuPsicologo from "@/components/Psicologo/MenuPsicologo";
-const PatientsReports = () => {
-  return <MenuPsicologo optionValue="patientsReports"></MenuPsicologo>;
+import Navbar from "@/components/Navbar/Navbar";
+
+const Registros = () => {
+  return (
+    <div>
+      <Navbar type="psico" />
+    </div>
+  );
 };
 
-export default PatientsReports;
+export default Registros;
