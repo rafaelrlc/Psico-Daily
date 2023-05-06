@@ -2,7 +2,6 @@ import Head from "next/head";
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-
 const MenuPaciente = ({ optionValue }) => {
   return (
     <div>

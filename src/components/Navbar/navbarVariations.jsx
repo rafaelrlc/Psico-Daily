@@ -1,9 +1,8 @@
-import { HiOutlineLogout } from "react-icons/hi";
 import { FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
-import { TbLogout } from "react-icons/tb";
+
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/auth/authProvider";
 
@@ -21,15 +20,10 @@ export const NavHelper = (props) => {
       </li>
       <li
         onClick={() => router.push("/register")}
-        className="hover:cursor-pointer hover:bg-[#6359d1]"
+        className="hover:cursor-pointer hover:rotate-[-2deg]"
       >
         <a className="block rounded p-2 px-4">CRIAR CONTA</a>
       </li>
-      {/* <li className="hover:cursor-pointer hover:rotate-[-2deg]">
-        <a href="#sobre" className="block rounded hover:text-gray-300">
-          Sobre
-        </a>
-      </li> */}
     </div>
   );
 

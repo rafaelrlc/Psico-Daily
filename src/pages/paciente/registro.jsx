@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import Registro from "@/components/Paciente/Registro/Registro";
+import Registro from "@/components/Paciente/Registro";
 import Head from "next/head";
 const registro = () => {
   return (

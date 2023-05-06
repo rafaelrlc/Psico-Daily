@@ -1,13 +1,13 @@
 import React from "react";
-
 import Navbar from "@/components/Navbar/Navbar";
-const psicologo = () => {
+import Settings from "@/components/Settings";
+const settings = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <h1>psicologo</h1>
+      <Settings />
     </div>
   );
 };
 
-export default psicologo;
+export default settings;

@@ -11,21 +11,21 @@ const Navbar = ({ type }) => {
 
   return (
     <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 sm:h-[11vh] h-[8vh] bg-[#574dc1] border-gray-200 custom-shadow">
+      <div className="flex items-center justify-between w-full px-14 sm:h-[85px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow">
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
             {!mobileNav && (
-              <span className="self-center md:text-[1.7rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg] ">
+              <span className="self-center md:text-[1.75rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg] ">
                 PsicoDaily
               </span>
             )}
           </a>
         </div>
 
-        <ul className={`lg:flex ${"text-[0.9rem]"} hidden`}>
+        <ul className={`lg:flex ${"text-[0.95rem]"} hidden`}>
           <NavHelper type={type} />
         </ul>
 

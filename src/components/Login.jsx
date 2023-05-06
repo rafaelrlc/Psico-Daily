@@ -79,7 +79,7 @@ const Login = (props) => {
     if (createAcc) {
       try {
         const response = await fetch(
-          "http://localhost:3000/pac_register",
+          "http://localhost:3005/pac_register",
           requestOptions
         );
 
@@ -98,7 +98,7 @@ const Login = (props) => {
     <>
       <Navbar type={"menu"} />
       <form
-        className="flex items-center h-[89vh] "
+        className="flex items-center h-[calc(100vh-85px)]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">

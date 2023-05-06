@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
 import IndividualRegistro from "./IndividualRegistro";
 import NewRegistro from "./NewRegistro";
-import { FaSearch } from "react-icons/fa";
-import { fake_registros } from "../../../../utils/ficData";
-import api from "@/services/api";
 import { useAuth } from "@/context/auth/authProvider";
-import { assetPrefix } from "../../../../next.config";
+
 const Registro = () => {
   const [registros, setRegistros] = useState([]);
   const auth = useAuth();
 
-  console.log("role atual", auth.role);
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "x-access-token": auth.accessToken,
-    },
-  };
-
   const fetchItems = async () => {
     try {
-      const response = await api.get("/registro", config);
-      setRegistros(response.data.registers);
+      const response = await fetch("http://localhost:3005/registro", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": auth.accessToken,
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+      setRegistros(data.registers);
     } catch (error) {
       console.log("ERROR");
     }
@@ -40,7 +37,7 @@ const Registro = () => {
     console.log(removeRegistroData);
 
     try {
-      const response = await fetch("http://localhost:3000/registro", {
+      await fetch("http://localhost:3005/registro", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -63,17 +60,29 @@ const Registro = () => {
     };
 
     try {
-      const response = await api.post("/registro", newRegistroData, config);
-      fetchItems();
+      const response = await fetch("http://localhost:3005/registro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": auth.accessToken,
+        },
+        body: JSON.stringify(newRegistroData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      await fetchItems();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="h-[86vh] md:gap-0 gap-10 mx-10 mt-[3vh] flex items-center">
+    <div className="md:h-[calc(100vh-85px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
       <div className="flex sm:gap-5 md:gap-10 gap-0 ">
-        <div className="flex flex-col gap-8  max-h-[550px] overflow-y-auto custom-scrollbar-mobile">
+        <div className="flex flex-col gap-8  h-[80vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
           {registros.map((register) => (
             <IndividualRegistro
               title={register.titulo}

@@ -24,9 +24,9 @@ const NewRegistro = ({ addRegistro }) => {
   return (
     <div className="sm:block hidden">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="xl:w-[440px] md:w-[350px] w-[300px] flex flex-col justify-center items-start gap-3">
+        <div className="w-[25vw] flex flex-col justify-center items-start gap-3">
           <input
-            className="rounded-lg w-full py-3 px-3   text-black text-base border-2 border-gray-300 outline-none box-border mt-2"
+            className="rounded-lg w-full py-3 px-3  text-black text-base border-[1px] border-gray-500 outline-none box-border mt-2"
             placeholder="Título"
             id="confirmPassword"
             {...register("title")}
@@ -37,18 +37,19 @@ const NewRegistro = ({ addRegistro }) => {
 
           <textarea
             id="message"
-            className="block p-3 w-full h-[50vh] text-gray-900  rounded-lg border-2 border-gray-300"
+            className="block p-3 w-full h-[60vh]  text-gray-900 rounded-lg border-[1px] border-gray-500"
             placeholder="Faça seu registro..."
+            style={{ whiteSpace: "pre-wrap" }}
             {...register("description")}
           ></textarea>
           <span className="text-red-600 mt-1 text-sm">
             {errors?.description?.message}
           </span>
         </div>
-        <div className="mt-5 text-center">
+        <div className="text-center">
           <button
             type="submit"
-            className="focus:outline-none text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2  focus:ring-indigo-900 text-base rounded-2xl px-12 py-2 mb-2"
+            className="focus:outline-none text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2  focus:ring-indigo-900 text-base rounded-xl px-12 py-2 mb-2"
           >
             Registrar
           </button>
@@ -56,7 +57,6 @@ const NewRegistro = ({ addRegistro }) => {
       </form>
     </div>
   );
-  sdada;
 };
 
 export default NewRegistro;

@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 
 const Homepage = () => {
   const router = useRouter();
   return (
     <div className="">
       <Navbar type="menu" />
-      <div className="flex md:flex-row flex-col justify-center  items-center h-[89vh] md:gap-0 gap-10">
+      <div className="flex md:flex-row flex-col justify-center items-center h-[calc(100vh-85px)] md:gap-0 gap-10">
         <div className="flex flex-col  mx-10 lg:mt-0 items-center lg:items-start justify-center ">
           <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
             Para quem é o PsicoDaily?
