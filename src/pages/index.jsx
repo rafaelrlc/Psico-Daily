@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Homepage from "@/components/Homepage/Homepage";
+import Homepage from "@/components/Homepage";
 import { useEffect } from "react";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";

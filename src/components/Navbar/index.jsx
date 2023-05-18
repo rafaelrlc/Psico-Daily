@@ -2,16 +2,15 @@ import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
 import { useState } from "react";
-
 import { NavHelper, MobileNavHelper } from "./navbarVariations";
-
+import Modal from "../../../utils/ModalTest";
 const Navbar = ({ type }) => {
   const router = useRouter();
   const [mobileNav, setMobileNav] = useState(false);
 
   return (
     <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 sm:h-[85px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow">
+      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow">
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"

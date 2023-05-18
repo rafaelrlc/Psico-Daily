@@ -1,13 +1,17 @@
 import React from "react";
-import Navbar from "@/components/Navbar/Navbar";
-import Settings from "@/components/Settings";
-const settings = () => {
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
+const Settings = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("settings/profile");
+  }, []);
   return (
-    <div>
-      <Navbar type="patient" />
-      <Settings />
+    <div className="flex items-center justify-center h-[100vh]">
+      <p>Loading...</p>
     </div>
   );
 };
 
-export default settings;
+export default Settings;

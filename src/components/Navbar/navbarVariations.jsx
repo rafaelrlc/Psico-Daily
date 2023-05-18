@@ -2,73 +2,51 @@ import { FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
-
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/auth/authProvider";
+import { NavItem, NavItemIcon } from "./NavItem";
+import { useEffect } from "react";
 
 export const NavHelper = (props) => {
   const router = useRouter();
   const auth = useAuth();
 
+  let icon_url =
+    "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
+
+  useEffect(() => {
+    //get user icon
+    icon_url =
+      "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
+  }, []);
+
   const menuNav = (
     <div className="flex space-x-8">
-      <li
-        onClick={() => router.push("/login")}
-        className="hover:cursor-pointer hover:rotate-[-2deg] "
-      >
-        <a className="block rounded hover:text-gray-300 p-2">FAZER LOGIN</a>
-      </li>
-      <li
-        onClick={() => router.push("/register")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <a className="block rounded p-2 px-4">CRIAR CONTA</a>
-      </li>
+      <NavItem action={() => router.push("/login")} label="FAZER LOGIN" />
+      <NavItem action={() => router.push("/register")} label="CRIAR CONTA" />
     </div>
   );
-
   const patientNav = (
     <div className="flex space-x-8 items-center">
-      <li
-        onClick={() => router.push("/paciente/registro")}
-        className="hover:cursor-pointer hover:rotate-[-2deg] "
-      >
-        <div className="flex items-center gap-4">
-          <HiOutlineNewspaper size={20} />
-          <a className="block rounded hover:text-gray-300">Registro</a>
-        </div>
-      </li>
-      <li
-        onClick={() => router.push("/paciente/consultas")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-4">
-          <AiOutlinePaperClip size={20} />
-          <a className="block rounded hover:text-gray-300">Consulta</a>
-        </div>
-      </li>
-      <li
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-        onClick={() => router.push("/paciente/psicologo")}
-      >
-        <div className="flex items-center gap-4">
-          <GoPerson size={20} />
-          <a className="block rounded hover:text-gray-300">Seu Psicólogo</a>
-        </div>
-      </li>
-      <li
-        onClick={() => router.push("/paciente/settings")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-3">
-          <FiSettings size={20} />
-          <a className="block rounded hover:text-gray-300">Configurações</a>
-        </div>
-      </li>
+      <NavItemIcon
+        icon={HiOutlineNewspaper}
+        label="Registro"
+        action={() => router.push("/paciente/registro")}
+      />
+      <NavItemIcon
+        icon={AiOutlinePaperClip}
+        label="Consulta"
+        action={() => router.push("/paciente/consultas")}
+      />
+      <NavItemIcon
+        icon={GoPerson}
+        label="Seu Psicólogo"
+        action={() => router.push("/paciente/psicologo")}
+      />
       <li className="hover:cursor-pointer hover:rotate-[-2deg]">
         <a
           className="block rounded hover:text-gray-300"
-          onClick={() => auth.logout()}
+          onClick={() => router.push("/paciente/settings/profile")}
         >
           <img
             src="https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png"

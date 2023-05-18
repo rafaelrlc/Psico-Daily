@@ -73,3 +73,23 @@ export const newRegistroSchema = yup.object({
     .max(300, "Limite máximo de 300 caracteres.")
     .required("Campo obrigatório. Informe uma descrição."),
 });
+
+export const editDataSchema = yup.object({
+  name: yup
+    .string()
+    .max(30, "Limite máximo de 30 caracteres.")
+    .required("Campo obrigatório. Informe um título."),
+  username: yup
+    .string()
+    .max(300, "Limite máximo de 300 caracteres.")
+    .required("Campo obrigatório. Informe uma descrição."),
+  email: yup.string().email("E-mail inválido").required("Campo obrigatório."),
+  currentPassword: yup
+    .string()
+    .max(300, "Limite máximo de 300 caracteres.")
+    .required("Campo obrigatório. Informe uma descrição."),
+  newPassword: yup
+    .string()
+    .max(30, "Limite máximo de 300 caracteres.")
+    .required("Campo obrigatório. Informe uma descrição."),
+});

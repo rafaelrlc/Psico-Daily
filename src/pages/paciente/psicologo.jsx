@@ -1,10 +1,11 @@
 import React from "react";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Navbar";
+import PsicologoMessages from "@/components/PsicologoMessages";
 const psicologo = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <h1>psicologo</h1>
+      <PsicologoMessages />
     </div>
   );
 };

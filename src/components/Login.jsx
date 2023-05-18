@@ -2,7 +2,7 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 import {
   registerPacienteSchema,
   registerPsicologoSchema,
@@ -102,13 +102,13 @@ const Login = (props) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">
-          <div className=" w-[83%] md:w-[65%] flex justify-center items-center flex-col bg-white rounded-2xl">
+          <div className=" w-[83%] md:w-[65%] flex justify-center items-center flex-col bg-white ">
             <h1 className="text-black text-[2.6rem] ">Psicodaily</h1>
 
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                   type="text"
                   {...register("name")}
                   placeholder="Nome completo"
@@ -122,7 +122,7 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="text"
                   {...register("cpf")}
                   placeholder="CPF"
@@ -135,7 +135,7 @@ const Login = (props) => {
             )}
             <div className="w-full flex flex-col justify-center items-start">
               <input
-                className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                 type="text"
                 placeholder="E-mail"
                 {...register("email")}
@@ -153,7 +153,7 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="text"
                   placeholder="Repetir E-mail"
                   {...register("confirmEmail")}
@@ -166,7 +166,7 @@ const Login = (props) => {
             )}
             <div className="w-full flex flex-col justify-center items-start">
               <input
-                className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                 type="password"
                 placeholder="Senha"
                 {...register("password")}
@@ -184,7 +184,7 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-2xl p-3 bg-white text-black text-base border border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="password"
                   placeholder="Repetir Senha"
                   {...register("confirmPassword")}
@@ -219,8 +219,8 @@ const Login = (props) => {
               )}
             </div>
 
-            <button className="w-full py-3 mx-6 my-4 rounded-2xl outline-none tracking-wider text-white bg-[#574dc1] hover:bg-[#3b30b9] cursor-pointer border-none">
-              {!createAcc ? "Login" : "Registrar"}
+            <button className="w-full py-3 mx-6 my-4 rounded-xl outline-none tracking-wider text-white bg-[#574dc1] hover:bg-[#3b30b9] cursor-pointer border-none">
+              {!createAcc ? "LOGIN" : "REGISTRAR"}
             </button>
           </div>
         </div>

@@ -20,11 +20,11 @@ const IndividualRegistro = ({
   const mesFormatado = mes < 10 ? "0" + mes : mes;
   return (
     <div
-      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-500 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start"
+      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-500 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start shadow-sm md:max-h-[180px] max-h-[250px]"
       onMouseEnter={() => setShowCloseButton(true)}
       onMouseLeave={() => setShowCloseButton(false)}
     >
-      <div className="flex flex-col md:flex-row gap-3 items-center justify-cente">
+      <div className="flex flex-col md:flex-row gap-3 items-center justify-center">
         <div className="flex gap-5 items-center justify-center">
           <div className="hidden xl:flex flex-col font-bold text-xl">
             <p>
@@ -53,7 +53,7 @@ const IndividualRegistro = ({
       </div>
 
       {showCloseButton && (
-        <div className="absolute  right-0">
+        <div className="absolute right-0">
           <BiTrash
             className="hover:cursor-pointer hover:text-red-600 text-[#535353] text-2xl m-[0.5rem]"
             onClick={() => {
