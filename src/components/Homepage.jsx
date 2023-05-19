@@ -29,7 +29,7 @@ const Homepage = () => {
             <img
               src="https://raw.githubusercontent.com/rafaelrlc/Psico-Daily/83cb506b50cb590ee0a9b2acfc2f218867534df0/utils/rS_.svg"
               Navbaralt="homepage_page_img"
-              classNamessName="w-[50vw]"
+              className="w-[50vw]"
             />
           </div>
         </div>
