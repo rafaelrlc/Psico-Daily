@@ -11,7 +11,7 @@ import api from "@/services/api";
 const schema = z.object({
   currentPassword: z.string().nonempty("Campo Obrigatório"),
   newPassword: z.string(),
-  username: z.string().nonempty("Campo Obrigatório"),
+  cpf: z.string().nonempty("Campo Obrigatório"),
   nome: z.string().nonempty("Campo Obrigatório"),
   userEmail: z.string().nonempty("Campo Obrigatório"),
 });
@@ -37,11 +37,12 @@ const EditData = () => {
     resolver: zodResolver(schema),
     defaultValues: async () => {
       try {
-        const response = await api.get("/userinfo", config);
+        const response = await api.get("/user", config);
+        console.log(response);
         return {
           nome: response.data.name,
           userEmail: response.data.email,
-          username: "@" + response.data.name,
+          cpf: response.data.cpf,
         };
       } catch (error) {
         console.log(error);
@@ -49,7 +50,7 @@ const EditData = () => {
       return {
         nome: "",
         userEmail: "",
-        username: "",
+        cpf: "",
       };
     },
   });
@@ -84,16 +85,17 @@ const EditData = () => {
           <Grid xs={6}>
             <div className={`mb-4 basis-1/2`}>
               <label className="block text-gray-700 text-sm font-bold mb-2 w-full">
-                Username
+                CPF
               </label>
               <input
                 className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                placeholder="@username"
-                {...register("username")}
+                placeholder="CPF"
+                disabled
+                {...register("cpf")}
               />
               <span className="text-red-600 text-sm">
-                {errors.username?.message}
+                {errors.cpf?.message}
               </span>
             </div>
           </Grid>

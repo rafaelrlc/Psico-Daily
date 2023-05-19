@@ -9,8 +9,8 @@ const Navbar = ({ type }) => {
   const [mobileNav, setMobileNav] = useState(false);
 
   return (
-    <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow z-50">
+    <nav>
+      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow z-50 text-white">
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"
@@ -24,7 +24,7 @@ const Navbar = ({ type }) => {
           </a>
         </div>
 
-        <ul className={`lg:flex ${"text-[0.95rem]"} hidden`}>
+        <ul className="lg:flex text-[0.95rem] hidden">
           <NavHelper type={type} />
         </ul>
 
@@ -44,7 +44,7 @@ const Navbar = ({ type }) => {
       <div
         className={
           mobileNav
-            ? "fixed flex flex-col items-center justify-center left-0 top-0 w-full h-full lg:hidden bg-[#574dc1] opacity-[.98] ease-in-out duration-500 z-50"
+            ? "fixed flex flex-col items-center justify-center left-0 top-0 w-full h-full lg:hidden bg-[#574dc1] opacity-[.98] ease-in-out duration-500 z-50 text-white"
             : "fixed left-[-100%]"
         }
       >

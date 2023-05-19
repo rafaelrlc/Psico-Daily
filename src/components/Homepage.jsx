@@ -8,7 +8,7 @@ const Homepage = () => {
       <Navbar type="menu" />
       <div className="flex justify-center items-center h-[calc(100vh-85px)]">
         <div className="flex md:flex-row flex-col justify-center items-center 2xl:max-w-[1540px] max-w-[1240px]">
-          <div className="flex flex-col mx-10  items-center lg:items-start justify-center ">
+          <div className="flex flex-col mx-10  items-center lg:items-start justify-center">
             <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
               Para quem é o PsicoDaily?
             </h1>
@@ -28,8 +28,8 @@ const Homepage = () => {
           <div className="hidden lg:block mt-24">
             <img
               src="https://raw.githubusercontent.com/rafaelrlc/Psico-Daily/83cb506b50cb590ee0a9b2acfc2f218867534df0/utils/rS_.svg"
-              alt="homepage_page_img"
-              className="w-[700px]"
+              Navbaralt="homepage_page_img"
+              classNamessName="w-[50vw]"
             />
           </div>
         </div>

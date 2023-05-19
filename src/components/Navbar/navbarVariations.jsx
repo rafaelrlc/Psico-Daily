@@ -22,15 +22,15 @@ export const NavHelper = (props) => {
 
   const menuNav = (
     <div className="flex space-x-8">
-      <NavItem action={() => router.push("/login")} label="Fazer Login" />
+      <NavItem action={() => router.push("/login")} label="LOGIN" />
       <NavItem
         action={() => router.push("/registerpaciente")}
-        label="Criar Conta"
+        label="REGISTRAR"
       />
     </div>
   );
   const patientNav = (
-    <div className="flex gap-5 items-center">
+    <div className="flex gap-8 items-center">
       <div className="flex gap-7">
         <NavItemIcon
           icon={HiOutlineNewspaper}
@@ -48,12 +48,13 @@ export const NavHelper = (props) => {
           action={() => router.push("/paciente/psicologo")}
         />
       </div>
-
-      <NavItemIcon icon={AiFillBell} />
-      <NavItemIcon
-        action={() => router.push("/paciente/settings/profile")}
-        src={icon_url}
-      />
+      <div className="flex items-center gap-2">
+        <NavItemIcon icon={AiFillBell} />
+        <NavItemIcon
+          action={() => router.push("/paciente/settings/profile")}
+          src={icon_url}
+        />
+      </div>
     </div>
   );
 
