@@ -10,7 +10,7 @@ const Navbar = ({ type }) => {
 
   return (
     <nav className="text-white">
-      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow">
+      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#574dc1] border-gray-200 custom-shadow z-50">
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"
@@ -44,7 +44,7 @@ const Navbar = ({ type }) => {
       <div
         className={
           mobileNav
-            ? "fixed flex flex-col items-center justify-center left-0 top-0 w-full h-full lg:hidden bg-[#574dc1] opacity-[.98] ease-in-out duration-500"
+            ? "fixed flex flex-col items-center justify-center left-0 top-0 w-full h-full lg:hidden bg-[#574dc1] opacity-[.98] ease-in-out duration-500 z-50"
             : "fixed left-[-100%]"
         }
       >

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { TbTrashX } from "react-icons/tb";
 import { CgClose } from "react-icons/cg";
-
 import { BiTrash } from "react-icons/bi";
+import Checkbox from "@mui/material/Checkbox";
 
 const IndividualRegistro = ({
   title,
@@ -10,6 +10,9 @@ const IndividualRegistro = ({
   date,
   id,
   removeRegistro,
+  aviso,
+  checked,
+  changeCheckMark,
 }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
   const hora = date.slice(11, 16);
@@ -18,6 +21,10 @@ const IndividualRegistro = ({
   const mes = data.getMonth() + 1;
   const diaFormatado = dia < 10 ? "0" + dia : dia;
   const mesFormatado = mes < 10 ? "0" + mes : mes;
+
+  const setCheckMark = () => {
+    changeCheckMark(id);
+  };
   return (
     <div
       className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-500 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start shadow-sm md:max-h-[180px] max-h-[250px]"
@@ -52,13 +59,22 @@ const IndividualRegistro = ({
         <div />
       </div>
 
-      {showCloseButton && (
-        <div className="absolute right-0">
+      {!aviso && showCloseButton && (
+        <div>
           <BiTrash
             className="hover:cursor-pointer hover:text-red-600 text-[#535353] text-2xl m-[0.5rem]"
             onClick={() => {
               removeRegistro(id);
             }}
+          />
+        </div>
+      )}
+      {aviso && (
+        <div>
+          <Checkbox
+            defaultChecked
+            onChange={changeCheckMark}
+            checked={checked}
           />
         </div>
       )}

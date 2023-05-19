@@ -1,6 +1,6 @@
 import { FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
-import { AiOutlinePaperClip } from "react-icons/ai";
+import { AiOutlinePaperClip, AiFillBell } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/auth/authProvider";
@@ -22,38 +22,38 @@ export const NavHelper = (props) => {
 
   const menuNav = (
     <div className="flex space-x-8">
-      <NavItem action={() => router.push("/login")} label="FAZER LOGIN" />
-      <NavItem action={() => router.push("/register")} label="CRIAR CONTA" />
+      <NavItem action={() => router.push("/login")} label="Fazer Login" />
+      <NavItem
+        action={() => router.push("/registerpaciente")}
+        label="Criar Conta"
+      />
     </div>
   );
   const patientNav = (
-    <div className="flex space-x-8 items-center">
+    <div className="flex gap-5 items-center">
+      <div className="flex gap-7">
+        <NavItemIcon
+          icon={HiOutlineNewspaper}
+          label="Registro"
+          action={() => router.push("/paciente/registro")}
+        />
+        <NavItemIcon
+          icon={AiOutlinePaperClip}
+          label="Consulta"
+          action={() => router.push("/paciente/consultas")}
+        />
+        <NavItemIcon
+          icon={GoPerson}
+          label="Seu Psicólogo"
+          action={() => router.push("/paciente/psicologo")}
+        />
+      </div>
+
+      <NavItemIcon icon={AiFillBell} />
       <NavItemIcon
-        icon={HiOutlineNewspaper}
-        label="Registro"
-        action={() => router.push("/paciente/registro")}
+        action={() => router.push("/paciente/settings/profile")}
+        src={icon_url}
       />
-      <NavItemIcon
-        icon={AiOutlinePaperClip}
-        label="Consulta"
-        action={() => router.push("/paciente/consultas")}
-      />
-      <NavItemIcon
-        icon={GoPerson}
-        label="Seu Psicólogo"
-        action={() => router.push("/paciente/psicologo")}
-      />
-      <li className="hover:cursor-pointer hover:rotate-[-2deg]">
-        <a
-          className="block rounded hover:text-gray-300"
-          onClick={() => router.push("/paciente/settings/profile")}
-        >
-          <img
-            src="https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png"
-            className="w-[50px] text-white"
-          />
-        </a>
-      </li>
     </div>
   );
 
@@ -69,39 +69,19 @@ export const NavHelper = (props) => {
         </div>
       </li>
 
-      <li
-        onClick={() => router.push("/psicologo/registros")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-3">
-          <HiOutlineNewspaper size={20} />
-          <a className="block rounded hover:text-gray-300">Registros</a>{" "}
-        </div>
-      </li>
+      <NavItemIcon
+        action={() => router.push("/psicologo/registros")}
+        icon={HiOutlineNewspaper}
+        label="Seus Registros"
+      />
 
-      <li
-        onClick={() => router.push("/psicologo/settings")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-3">
-          <FiSettings size={20} />
-          <a className="block rounded hover:text-gray-300">
-            Configurações
-          </a>{" "}
-        </div>
-      </li>
+      <NavItemIcon
+        action={() => router.push("/psicologo/settings")}
+        icon={FiSettings}
+        label="Configurações"
+      />
 
-      <li className="hover:cursor-pointer hover:rotate-[-2deg]">
-        <a
-          className="block rounded hover:text-gray-300"
-          onClick={() => auth.logout()}
-        >
-          <img
-            src="https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png"
-            className="w-[50px] text-white"
-          />
-        </a>
-      </li>
+      <NavItemIcon action={() => auth.logout()} src={icon_url} />
     </div>
   );
 
@@ -135,7 +115,7 @@ export const MobileNavHelper = (props) => {
         <a
           onClick={() => {
             props.setMobileNav(false);
-            router.push("/register");
+            router.push("/registerpaciente");
           }}
         >
           Registrar
@@ -191,7 +171,7 @@ export const MobileNavHelper = (props) => {
           href="#about"
           onClick={() => {
             props.setMobileNav(false);
-            router.push("/paciente/consultas");
+            router.push("/paciente/settings");
           }}
         >
           Configurações

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import IndividualRegistro from "./IndividualRegistro";
+import IndividualRegistro from "./IndividualMessage";
 import NewRegistro from "./NewRegistro";
 import { useAuth } from "@/context/auth/authProvider";
 import api from "@/services/api";
@@ -73,8 +73,8 @@ const Registro = () => {
   };
 
   return (
-    <div className="md:h-[80vh] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
-      <h1 className="py-10 text-xl font-bold text-gray-800">Seus Registros</h1>
+    <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
+      <h1 className="py-5 text-xl font-bold text-gray-800">Seus Registros</h1>
       <div className="flex md:gap-10">
         <div className="flex flex-col gap-4 h-[70vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
           {registros.map((register) => (
@@ -88,7 +88,7 @@ const Registro = () => {
             />
           ))}
         </div>
-        <div className="items-center justify-center flex-col  text-xl hidden md:flex">
+        <div className="items-center justify-center flex-col text-xl hidden md:flex">
           <NewRegistro addRegistro={addRegistro}></NewRegistro>
         </div>
       </div>

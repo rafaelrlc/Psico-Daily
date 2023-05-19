@@ -3,11 +3,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
-import {
-  registerPacienteSchema,
-  registerPsicologoSchema,
-  loginSchema,
-} from "../../utils/schemas/schemas";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
 import api from "@/services/api";
@@ -15,20 +10,17 @@ import api from "@/services/api";
 const Login = (props) => {
   const [createAcc, setCreateAcc] = useState(props.register);
   const [wrongCredentials, setWrongCredentials] = useState(false);
-
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(createAcc ? registerPacienteSchema : loginSchema),
+    resolver: yupResolver(props.schema),
   });
 
   const router = useRouter();
-
   const auth = useContext(AuthContext);
-
   const config = {
     headers: { "Content-Type": "application/json" },
   };
@@ -41,8 +33,6 @@ const Login = (props) => {
 
     try {
       const response = await api.post("/login", data, config);
-
-      console.log(response);
       auth.setRole(response.data.type);
       auth.login(response.data.token);
 
@@ -55,7 +45,6 @@ const Login = (props) => {
       }
     } catch (error) {
       console.log(error);
-      console.log("caiu no catch");
       if (error.response && error.response.status === 401) {
         setWrongCredentials(true);
       }
@@ -67,27 +56,23 @@ const Login = (props) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: data.name,
+        name: data?.name,
         email: data.email,
         password: data.password,
-        cpf: data.cpf,
+        cpf: data?.cpf,
+        crp: data?.crp,
       }),
     };
 
-    console.log(requestOptions);
+    let req_url = "http://localhost:3005/pac_register";
+    if (props.type == "psico") req_url = "http://localhost:3005/psic_register";
 
     if (createAcc) {
       try {
-        const response = await fetch(
-          "http://localhost:3005/pac_register",
-          requestOptions
-        );
-
-        console.log(response);
+        const response = await fetch(req_url, requestOptions);
         loginUser(data.email, data.password);
       } catch (error) {
         console.log(error);
-        console.log("caiu no erro");
       }
     } else {
       loginUser(data.email, data.password);
@@ -103,18 +88,18 @@ const Login = (props) => {
       >
         <div className="w-full flex items-center justify-center">
           <div className=" w-[83%] md:w-[65%] flex justify-center items-center flex-col bg-white ">
-            <h1 className="text-black text-[2.6rem] ">Psicodaily</h1>
+            <h1 className="text-black text-[2.2rem] ">Psicodaily</h1>
 
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
+                  className="w-full   rounded-xl p-3 bg-white text-black text-sm border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                   type="text"
                   {...register("name")}
                   placeholder="Nome completo"
                   id="name"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                   {errors?.name?.message}
                 </span>
               </div>
@@ -122,30 +107,44 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="text"
                   {...register("cpf")}
                   placeholder="CPF"
                   id="cpf"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                   {errors?.cpf?.message}
+                </span>
+              </div>
+            )}
+            {createAcc && props.type == "psico" && (
+              <div className="w-full flex flex-col justify-center items-start">
+                <input
+                  className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px] border-gray-300 outline-none box-border mt-2"
+                  type="text"
+                  {...register("crp")}
+                  placeholder="CRP"
+                  id="CRP"
+                ></input>
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
+                  {errors?.crp?.message}
                 </span>
               </div>
             )}
             <div className="w-full flex flex-col justify-center items-start">
               <input
-                className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
+                className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                 type="text"
                 placeholder="E-mail"
                 {...register("email")}
                 id="email"
               ></input>
-              <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+              <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                 {errors?.email?.message}
               </span>
               {wrongCredentials && (
-                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                   Credenciais Inválidas
                 </span>
               )}
@@ -153,30 +152,30 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="text"
                   placeholder="Repetir E-mail"
                   {...register("confirmEmail")}
                   id="confirmEmail"
                 ></input>
-                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                   {errors?.confirmEmail?.message}
                 </span>
               </div>
             )}
             <div className="w-full flex flex-col justify-center items-start">
               <input
-                className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px]  border-gray-300 outline-none box-border mt-2"
+                className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px]  border-gray-300 outline-none box-border mt-2"
                 type="password"
                 placeholder="Senha"
                 {...register("password")}
                 id="password"
               ></input>
-              <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+              <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                 {errors?.password?.message}
               </span>
               {wrongCredentials && (
-                <span className="text-red-600 mt-1.5 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.5 ml-1.5 text-xs">
                   Credenciais Inválidas
                 </span>
               )}
@@ -184,13 +183,13 @@ const Login = (props) => {
             {createAcc && (
               <div className="w-full flex flex-col justify-center items-start">
                 <input
-                  className="w-full rounded-xl p-3 bg-white text-black text-base border-[1.5px] border-gray-300 outline-none box-border mt-2"
+                  className="w-full rounded-xl p-3 bg-white text-black text-sm border-[1.5px] border-gray-300 outline-none box-border mt-2"
                   type="password"
                   placeholder="Repetir Senha"
                   {...register("confirmPassword")}
                   id="confirmPassword"
                 ></input>
-                <span className="text-red-600 mt-1.65 ml-1.5 text-sm">
+                <span className="text-red-600 mt-1.65 ml-1.5 text-xs">
                   {errors?.confirmPassword?.message}
                 </span>
               </div>
@@ -199,7 +198,7 @@ const Login = (props) => {
               className="text-black self-end ml-1.5 mt-1.5"
               onClick={() => {
                 if (createAcc) router.push("/login");
-                else router.push("/register");
+                else router.push("/registerpaciente");
               }}
             >
               {createAcc ? (

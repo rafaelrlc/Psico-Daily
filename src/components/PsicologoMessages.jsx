@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth/authProvider";
 import api from "@/services/api";
-import IndividualRegistro from "./Registro/IndividualRegistro";
+import IndividualRegistro from "./Registro/IndividualMessage";
 import NewRegistro from "./Registro/NewRegistro";
 const PsicologoMessages = () => {
   const [registros, setRegistros] = useState([]);
@@ -72,11 +72,13 @@ const PsicologoMessages = () => {
     }
   };
 
+  const changeCheckMark = (messageId, active) => {};
+
   return (
     <div className="h-full mt-10 flex flex-col items-center justify-center">
-      <h1 className="text-4xl mb-5">Avisos</h1>
+      <h1 className="text-xl font-bold mb-5">Mensagens de (nome_psicologo)</h1>
       <div className="flex sm:gap-5 md:gap-10 gap-0 ">
-        <div className="flex flex-col gap-4 h-[80vh] md:w-[90vw] w-[100vw] md:overflow-y-auto custom-scrollbar-mobile">
+        <div className="flex flex-col gap-4 h-[70vh] md:w-[90vw] w-[100vw] md:overflow-y-auto custom-scrollbar-mobile">
           {registros.map((register) => (
             <IndividualRegistro
               title={register.titulo}
@@ -85,6 +87,9 @@ const PsicologoMessages = () => {
               id={register._id}
               key={register._id}
               removeRegistro={removeRegistro}
+              aviso={true}
+              changeCheckMark={changeCheckMark}
+              checked={true} // puxar da API
             />
           ))}
         </div>

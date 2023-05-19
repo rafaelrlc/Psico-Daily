@@ -26,7 +26,7 @@ export const registerPacienteSchema = yup.object({
 });
 
 export const registerPsicologoSchema = yup.object({
-  fullname: yup
+  name: yup
     .string()
     .max(35, "Limite máximo de 35 caracteres")
     .required("Campo obrigatório"),
