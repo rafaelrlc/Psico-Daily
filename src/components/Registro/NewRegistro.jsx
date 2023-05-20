@@ -2,7 +2,6 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { newRegistroSchema } from "../../../utils/schemas/schemas";
-import { v4 as uuidv4 } from "uuid";
 
 const NewRegistro = ({ addRegistro }) => {
   const {
@@ -16,7 +15,7 @@ const NewRegistro = ({ addRegistro }) => {
 
   const onSubmit = (data) => {
     const { title, description } = data;
-    const new_data = { title, description, id: uuidv4(), date: new Date() };
+    const new_data = { title, description, date: new Date() };
     addRegistro(new_data);
     reset();
   };

@@ -1,15 +1,32 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useAuth } from "@/context/auth/authProvider";
+
 import { FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
 import { AiOutlinePaperClip, AiFillBell } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
-import { useRouter } from "next/router";
-import { useAuth } from "@/context/auth/authProvider";
-import { NavItem, NavItemIcon } from "./NavItem";
-import { useEffect } from "react";
 
-export const NavHelper = (props) => {
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+
+import { NavItem, NavItemIcon } from "./NavItem";
+
+export const NavHelper = ({ type }) => {
   const router = useRouter();
   const auth = useAuth();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   let icon_url =
     "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
@@ -30,7 +47,7 @@ export const NavHelper = (props) => {
     </div>
   );
   const patientNav = (
-    <div className="flex gap-8 items-center">
+    <div className="flex items-center gap-4">
       <div className="flex gap-7">
         <NavItemIcon
           icon={HiOutlineNewspaper}
@@ -48,54 +65,124 @@ export const NavHelper = (props) => {
           action={() => router.push("/paciente/psicologo")}
         />
       </div>
-      <div className="flex items-center gap-2">
-        <NavItemIcon icon={AiFillBell} />
-        <NavItemIcon
-          action={() => router.push("/paciente/settings/profile")}
-          src={icon_url}
-        />
+
+      <div className="flex gap-6">
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <AiFillBell
+            size={25}
+            color="white"
+            className="hover:rotate-[-6deg]"
+          />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 1px 3px rgba(0,0,0,0.32))",
+              mt: 0.5,
+              width: "300px",
+              maxHeight: "300px",
+              overflow: "",
+              overflowY: "hidden",
+              bgcolor: "#fdfdfd",
+              "&:hover": {
+                overflowY: "auto", // Show scrollbar only on hover
+              },
+              "&::-webkit-scrollbar": {
+                width: "0.7rem",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                borderRadius: "4px",
+                backgroundColor: "rgba(0,0,0,.1)",
+              },
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <MenuItem onClick={handleClose}>
+            <p className="text-sm text-gray-600">
+              Tesfsdfsdfsdfsdfsdfsdfsdfsdfsdfhskdjfhksdjhfsfjsdfkjlshdfkjhsdsting
+            </p>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <p className="text-sm text-gray-600">Testing</p>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <p className="text-sm text-gray-600">Testing</p>
+          </MenuItem>
+        </Menu>
+        <div className="flex items-center gap-2">
+          <NavItemIcon
+            action={() => router.push("/paciente/settings/profile")}
+            src={icon_url}
+          />
+        </div>
       </div>
     </div>
   );
 
   const psicoNav = (
     <div className="flex space-x-8 items-center">
-      <li
-        onClick={() => router.push("/psicologo/consultas")}
-        className="hover:cursor-pointer hover:rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-3">
-          <AiOutlinePaperClip size={20} />
-          <a className="block rounded hover:text-gray-300">Sessões</a>{" "}
-        </div>
-      </li>
-
+      <NavItemIcon
+        action={() => router.push("/psicologo/consultas")}
+        icon={AiOutlinePaperClip}
+        label="Sessões"
+      />
       <NavItemIcon
         action={() => router.push("/psicologo/registros")}
         icon={HiOutlineNewspaper}
         label="Seus Registros"
       />
-
       <NavItemIcon
         action={() => router.push("/psicologo/settings")}
         icon={FiSettings}
         label="Configurações"
       />
-
       <NavItemIcon action={() => auth.logout()} src={icon_url} />
     </div>
   );
 
   return (
     <div>
-      {props.type == "psico" && psicoNav}
-      {props.type == "menu" && menuNav}
-      {props.type == "patient" && patientNav}
+      {type == "psico" && psicoNav}
+      {type == "menu" && menuNav}
+      {type == "patient" && patientNav}
     </div>
   );
 };
 
-export const MobileNavHelper = (props) => {
+export const MobileNavHelper = ({ setMobileNav, type }) => {
   const router = useRouter();
 
   const menuMobileNav = (
@@ -105,7 +192,7 @@ export const MobileNavHelper = (props) => {
       >
         <a
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/login");
           }}
         >
@@ -115,7 +202,7 @@ export const MobileNavHelper = (props) => {
       <li className="p-4 cursor-pointer  ease-in-out w-full hover:text-gray-400">
         <a
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/registerpaciente");
           }}
         >
@@ -138,7 +225,7 @@ export const MobileNavHelper = (props) => {
         <div>
           <a
             onClick={() => {
-              props.setMobileNav(false);
+              setMobileNav(false);
               router.push("/paciente/registro");
             }}
           >
@@ -149,7 +236,7 @@ export const MobileNavHelper = (props) => {
       <li className="p-4 cursor-pointer  ease-in-out w-full hover:text-gray-400">
         <a
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/paciente/consultas");
           }}
         >
@@ -160,7 +247,7 @@ export const MobileNavHelper = (props) => {
         <a
           href="#about"
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/paciente/psicologo");
           }}
         >
@@ -171,7 +258,7 @@ export const MobileNavHelper = (props) => {
         <a
           href="#about"
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/paciente/settings");
           }}
         >
@@ -188,7 +275,7 @@ export const MobileNavHelper = (props) => {
       >
         <a
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/login");
           }}
         >
@@ -198,7 +285,7 @@ export const MobileNavHelper = (props) => {
       <li className="p-4 cursor-pointer  ease-in-out w-full hover:text-gray-400">
         <a
           onClick={() => {
-            props.setMobileNav(false);
+            setMobileNav(false);
             router.push("/register");
           }}
         >
@@ -224,9 +311,9 @@ export const MobileNavHelper = (props) => {
   );
   return (
     <div>
-      {props.type == "menu" && menuMobileNav}
-      {props.type == "patient" && patientMobileNav}
-      {props.type == "psico" && psicoMobileNav}
+      {type == "menu" && menuMobileNav}
+      {type == "patient" && patientMobileNav}
+      {type == "psico" && psicoMobileNav}
     </div>
   );
 };

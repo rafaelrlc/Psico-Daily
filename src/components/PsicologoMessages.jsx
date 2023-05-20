@@ -2,22 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth/authProvider";
 import api from "@/services/api";
 import IndividualRegistro from "./Registro/IndividualMessage";
-import NewRegistro from "./Registro/NewRegistro";
+import useConfig from "../../utils/functions/useConfig";
 const PsicologoMessages = () => {
   const [registros, setRegistros] = useState([]);
-  const auth = useAuth();
-
-  const headers = {
-    "Content-Type": "application/json",
-    "x-access-token": auth.accessToken,
-  };
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "x-access-token": auth.accessToken,
-    },
-  };
+  const { accessToken } = useAuth();
+  const config = useConfig(accessToken);
 
   const fetchItems = async () => {
     try {
@@ -46,27 +35,6 @@ const PsicologoMessages = () => {
       });
 
       fetchItems();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addRegistro = async (data) => {
-    console.log(data);
-    const newRegistroData = {
-      titulo: data.title,
-      text: data.description,
-      data: data.date,
-    };
-
-    try {
-      await fetch("http://localhost:3005/registro", {
-        method: "POST",
-        headers,
-        body: JSON.stringify(newRegistroData),
-      });
-
-      await fetchItems();
     } catch (error) {
       console.log(error);
     }

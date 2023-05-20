@@ -1,29 +1,45 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "@/context/auth/authProvider";
+import useConfig from "../../../utils/functions/useConfig";
+import api from "@/services/api";
+
 import IndividualRegistro from "./IndividualMessage";
 import NewRegistro from "./NewRegistro";
-import { useAuth } from "@/context/auth/authProvider";
-import api from "@/services/api";
+
 const Registro = () => {
   const [registros, setRegistros] = useState([]);
-  const auth = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const headers = {
-    "Content-Type": "application/json",
-    "x-access-token": auth.accessToken,
-  };
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "x-access-token": auth.accessToken,
-    },
-  };
+  const { accessToken } = useAuth();
+  const config = useConfig(accessToken);
 
   const fetchItems = async () => {
     try {
       const response = await api.get("/registro", config);
       console.log(response);
       setRegistros(response.data.registers);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addRegistro = async (data) => {
+    const { title, description, date } = data;
+    const newRegistro = { titulo: title, text: description, data: date };
+    try {
+      await api.post("/registro", newRegistro, config);
+      await fetchItems();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeRegistro = async (id) => {
+    try {
+      await api.delete(`/registro/${id}`, config);
+      fetchItems();
     } catch (error) {
       console.log(error);
     }
@@ -33,60 +49,36 @@ const Registro = () => {
     fetchItems();
   }, []);
 
-  const removeRegistro = async (id) => {
-    const removeRegistroData = {
-      registroId: id,
-    };
-
-    try {
-      await fetch("http://localhost:3005/registro", {
-        method: "DELETE",
-        headers,
-        body: JSON.stringify(removeRegistroData),
-      });
-
-      fetchItems();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addRegistro = async (data) => {
-    console.log(data);
-    const newRegistroData = {
-      titulo: data.title,
-      text: data.description,
-      data: data.date,
-    };
-
-    try {
-      await fetch("http://localhost:3005/registro", {
-        method: "POST",
-        headers,
-        body: JSON.stringify(newRegistroData),
-      });
-
-      await fetchItems();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
       <h1 className="py-5 text-xl font-bold text-gray-800">Seus Registros</h1>
       <div className="flex md:gap-10">
         <div className="flex flex-col gap-4 h-[70vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
-          {registros.map((register) => (
-            <IndividualRegistro
-              title={register.titulo}
-              description={register.text}
-              date={register.data}
-              id={register._id}
-              key={register._id}
-              removeRegistro={removeRegistro}
-            />
-          ))}
+          {isLoading ? (
+            <div className="flex animate-pulse">
+              <div className="w-full ">
+                <ul className="space-y-4">
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <li
+                      key={index}
+                      className="w-full h-[11vh] bg-gray-100 rounded-md"
+                    ></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            registros.map((register) => (
+              <IndividualRegistro
+                key={register._id}
+                title={register.titulo}
+                description={register.text}
+                date={register.data}
+                id={register._id}
+                removeRegistro={removeRegistro}
+              />
+            ))
+          )}
         </div>
         <div className="items-center justify-center flex-col text-xl hidden md:flex">
           <NewRegistro addRegistro={addRegistro}></NewRegistro>

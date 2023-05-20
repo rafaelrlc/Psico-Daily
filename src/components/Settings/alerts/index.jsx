@@ -7,20 +7,24 @@ const UserAlerts = () => {
       <CheckBox
         label={"Notificações de Email"}
         description={
-          "Voce recebera notificações no seu email sobre o PsicoDaily."
+          "Voce recebera notificações no seu email sobre o PsicoDaily"
         }
+        isChecked={true}
       />
       <CheckBox
         label={"Perfil Público"}
-        description={"Seu perfil será público para outros usuários."}
+        description={"Seu perfil será público para outros usuários"}
+        isChecked={true}
       />
       <CheckBox
         label={"Alertas no Site"}
-        description={"Voce recebera alertas no PsicoDaily."}
+        description={"Voce recebera alertas no PsicoDaily"}
+        isChecked={true}
       />
       <CheckBox
         label={"Notificações de Email"}
-        description={"Eu desejo receber notificações no meu email"}
+        description={"Eu desejo receber notificações no meu E-mail"}
+        isChecked={true}
       />
     </div>
   );
