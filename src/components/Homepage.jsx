@@ -7,7 +7,7 @@ const Homepage = () => {
   return (
     <div className="">
       <Navbar type="menu" />
-      <div className="flex justify-center items-center h-[calc(100vh-85px)]">
+      <div className="flex justify-center items-center h-[100vh]">
         <div className="flex md:flex-row flex-col justify-center items-center 2xl:max-w-[1540px] max-w-[1240px]">
           <div className="flex flex-col mx-10  items-center lg:items-start justify-center">
             <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">

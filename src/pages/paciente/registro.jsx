@@ -6,9 +6,8 @@ const registro = () => {
   return (
     <div className="">
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute="Paciente">
-        <Registro />
-      </PrivateRoute>
+
+      <Registro />
     </div>
   );
 };

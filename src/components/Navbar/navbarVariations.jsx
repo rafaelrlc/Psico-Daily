@@ -5,12 +5,13 @@ import { GoPerson } from "react-icons/go";
 import { AiOutlinePaperClip, AiFillBell } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { BsPeopleFill } from "react-icons/bs";
-
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { NavItemIcon, NavItem } from "./NavItem";
 import Notification from "../Notification";
 import { fake_psico_notifications } from "../../../utils/ficData";
+
+import { v4 as uuidv4 } from "uuid";
 
 export const NavHelper = ({ type }) => {
   const router = useRouter();
@@ -132,6 +133,7 @@ export const NavHelper = ({ type }) => {
                   message={notif.message}
                   username={notif.username}
                   time={notif.time}
+                  key={uuidv4()}
                 />
               ))}
             </div>
@@ -241,6 +243,7 @@ export const NavHelper = ({ type }) => {
                   message={notif.message}
                   username={notif.username}
                   time={notif.time}
+                  key={uuidv4()}
                 />
               ))}
             </div>
@@ -256,17 +259,17 @@ export const NavHelper = ({ type }) => {
 
   const menuNav = (
     <div className="flex space-x-8">
-      <NavItem action={() => router.push("/login")} label="Login" />
+      <NavItem action={() => router.push("/login")} label="LOGIN" />
       <NavItem
         action={() => router.push("/registerpaciente")}
-        label="Registrar"
+        label="REGISTRAR"
       />
       <li className="hover:cursor-pointer hover:rotate-[-2deg] ">
         <a
-          className="block rounded hover:text-gray-300 p-2 text-lg"
+          className="block rounded hover:text-gray-300 p-2 text-base"
           href="#about"
         >
-          Sobre
+          SOBRE
         </a>
       </li>
     </div>

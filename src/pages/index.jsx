@@ -16,7 +16,7 @@ export default function Home() {
       } else if (auth.role == "Psicologo") {
         router.push("/psicologo/info");
       } else {
-        auth.logout();
+        router.push("/");
       }
     }
   }, []);

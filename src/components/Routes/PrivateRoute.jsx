@@ -7,9 +7,12 @@ const PrivateRoute = ({ allowedRoute, children }) => {
   const role = auth.role;
 
   useEffect(() => {
+    console.log("ROLE", role);
     if (auth.accessToken === null) {
+      console.log("1");
       router.push("/");
     } else if (allowedRoute !== role) {
+      console.log("2");
       router.push("/");
     }
   }, [auth.accessToken]);
