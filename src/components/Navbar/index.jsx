@@ -13,7 +13,7 @@ const Navbar = ({ type }) => {
 
   return (
     <nav>
-      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#4e44b5] border-gray-200 custom-shadow z-50 text-white">
+      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#564cc1] border-gray-200 custom-shadow z-50 text-white">
         {showNotification && (
           <div
             id="toast-notification"

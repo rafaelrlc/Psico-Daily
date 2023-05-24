@@ -263,7 +263,7 @@ export const NavHelper = ({ type }) => {
       />
       <li className="hover:cursor-pointer hover:rotate-[-2deg] ">
         <a
-          className="block rounded text-white hover:text-gray-200 p-2 text-xl "
+          className="block rounded hover:text-gray-300 p-2 text-lg"
           href="#about"
         >
           Sobre

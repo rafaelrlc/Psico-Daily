@@ -6,7 +6,7 @@ export const NavItem = (props) => {
       onClick={() => props.action()}
       className="hover:cursor-pointer hover:rotate-[-2deg] "
     >
-      <a className="block rounded hover:text-gray-200 p-2 text-xl text-white">
+      <a className="block rounded hover:text-gray-200 p-2 text-lg text-white">
         {props.label}
       </a>
     </li>

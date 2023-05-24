@@ -10,7 +10,7 @@ const Homepage = () => {
       <div className="flex justify-center items-center h-[calc(100vh-85px)]">
         <div className="flex md:flex-row flex-col justify-center items-center 2xl:max-w-[1540px] max-w-[1240px]">
           <div className="flex flex-col mx-10  items-center lg:items-start justify-center">
-            <h1 className="lg:text-5xl text-3xl font-bold text-center lg:text-left">
+            <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
               Para quem é o PsicoDaily?
             </h1>
             <h2 className="mt-5 text-center lg:text-left  font-medium text-xl w-full">
