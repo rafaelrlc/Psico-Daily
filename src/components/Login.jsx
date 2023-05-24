@@ -33,8 +33,7 @@ const Login = (props) => {
 
     try {
       const response = await api.post("/login", data, config);
-      auth.setRole(response.data.type);
-      auth.login(response.data.token);
+      auth.login(response.data.token, response.data.type);
 
       if (response.data.type == "Paciente") {
         console.log("FOI:", response.data.type);

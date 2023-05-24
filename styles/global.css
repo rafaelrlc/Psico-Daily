@@ -4,7 +4,7 @@
 
 :root {
   --primary: rgb(248, 248, 249);
-  --secondary: #5e57b4;
+  --secondary: #e0e0e0;
 }
 
 * {
@@ -14,7 +14,7 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 16px;
+  width: 14px;
 }
 
 *::-webkit-scrollbar-track {

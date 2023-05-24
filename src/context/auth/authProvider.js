@@ -7,14 +7,20 @@ const AuthContextProvider = ({ children }) => {
     typeof window !== "undefined" ? localStorage.getItem("token") : null
   );
 
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState(
+    typeof window !== "undefined" ? localStorage.getItem("role") : null
+  );
 
   const router = useRouter();
 
-  const loginHandler = (token) => {
+  const loginHandler = (token, userRole) => {
     setToken(token);
+    setRole(role);
     if (typeof window !== "undefined") {
       localStorage.setItem("token", token);
+    }
+    if (typeof window !== "undefined") {
+      localStorage.setItem("role", userRole);
     }
   };
 
@@ -22,6 +28,9 @@ const AuthContextProvider = ({ children }) => {
     setToken(null);
     if (typeof window !== "undefined") {
       localStorage.removeItem("token");
+    }
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("role");
     }
     router.push("/");
   };

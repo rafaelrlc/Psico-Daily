@@ -1,3 +1,49 @@
+import Notification from "@/components/Notification";
+
+export const fake_psico_notifications = [
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+];
+
 export const fake_registros = [
   {
     id: 1,

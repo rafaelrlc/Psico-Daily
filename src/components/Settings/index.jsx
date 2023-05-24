@@ -4,8 +4,8 @@ import EditData from "./profile";
 import UserAlerts from "./alerts";
 import UserImage from "./userImage";
 import UserSupport from "./support";
-
-const Settings = ({ settingsType }) => {
+import { useAuth } from "@/context/auth/authProvider";
+const Settings = ({ settingsType, userType }) => {
   let componentToRender;
   switch (settingsType) {
     case "profile":
@@ -24,10 +24,10 @@ const Settings = ({ settingsType }) => {
       componentToRender = null;
   }
   return (
-    <div className="h-[calc(100vh-85px)] flex justify-center items-center mx-10">
-      <div className="flex md:gap-20 md:w-full items-center justify-center">
+    <div className="flex justify-center items-center mx-10">
+      <div className="flex md:gap-20 md:w-full items-start justify-center absolute md:top-[32vh] top-[25vh]">
         <ConfigSidebar />
-        <div className=" md:max-h-[380px] md:w-[55vw]">{componentToRender}</div>
+        <div className="md:w-[55vw] mx-10">{componentToRender}</div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const SettingsSupport = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <Settings settingsType="support" />
+      <Settings settingsType="support" userType={"patient"} />
     </div>
   );
 };

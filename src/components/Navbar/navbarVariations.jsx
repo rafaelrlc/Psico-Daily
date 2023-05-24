@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "@/context/auth/authProvider";
 
-import { FiSettings } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
 import { AiOutlinePaperClip, AiFillBell } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
+import { BsPeopleFill } from "react-icons/bs";
 
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-
-import { NavItem, NavItemIcon } from "./NavItem";
+import { NavItemIcon, NavItem } from "./NavItem";
+import Notification from "../Notification";
+import { fake_psico_notifications } from "../../../utils/ficData";
 
 export const NavHelper = ({ type }) => {
   const router = useRouter();
-  const auth = useAuth();
-
   const [anchorEl, setAnchorEl] = useState(null);
+  const [notifications, setNotifications] = useState([]);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -35,17 +32,11 @@ export const NavHelper = ({ type }) => {
     //get user icon
     icon_url =
       "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
+
+    // get notifications
+    setNotifications(fake_psico_notifications);
   }, []);
 
-  const menuNav = (
-    <div className="flex space-x-8">
-      <NavItem action={() => router.push("/login")} label="LOGIN" />
-      <NavItem
-        action={() => router.push("/registerpaciente")}
-        label="REGISTRAR"
-      />
-    </div>
-  );
   const patientNav = (
     <div className="flex items-center gap-4">
       <div className="flex gap-7">
@@ -91,18 +82,21 @@ export const NavHelper = ({ type }) => {
             elevation: 0,
             sx: {
               overflow: "visible",
-              filter: "drop-shadow(0px 1px 3px rgba(0,0,0,0.32))",
+              filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.32))",
               mt: 0.5,
-              width: "300px",
+              width: "400px",
               maxHeight: "300px",
+              borderRadius: "20px",
               overflow: "",
               overflowY: "hidden",
+
               bgcolor: "#fdfdfd",
               "&:hover": {
                 overflowY: "auto", // Show scrollbar only on hover
               },
               "&::-webkit-scrollbar": {
                 width: "0.7rem",
+                display: "none",
               },
               "&::-webkit-scrollbar-thumb": {
                 borderRadius: "4px",
@@ -123,6 +117,7 @@ export const NavHelper = ({ type }) => {
                 width: 10,
                 height: 10,
                 bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
                 zIndex: 0,
               },
             },
@@ -130,17 +125,17 @@ export const NavHelper = ({ type }) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={handleClose}>
-            <p className="text-sm text-gray-600">
-              Tesfsdfsdfsdfsdfsdfsdfsdfsdfsdfhskdjfhksdjhfsfjsdfkjlshdfkjhsdsting
-            </p>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <p className="text-sm text-gray-600">Testing</p>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <p className="text-sm text-gray-600">Testing</p>
-          </MenuItem>
+          <div className="flex flex-col">
+            <div className="flex flex-col gap-3 mt-2">
+              {notifications.map((notif) => (
+                <Notification
+                  message={notif.message}
+                  username={notif.username}
+                  time={notif.time}
+                />
+              ))}
+            </div>
+          </div>
         </Menu>
         <div className="flex items-center gap-2">
           <NavItemIcon
@@ -164,12 +159,116 @@ export const NavHelper = ({ type }) => {
         icon={HiOutlineNewspaper}
         label="Seus Registros"
       />
+
       <NavItemIcon
-        action={() => router.push("/psicologo/settings")}
-        icon={FiSettings}
-        label="Configurações"
+        action={() => router.push("/psicologo/pacientes")}
+        icon={BsPeopleFill}
+        label="Pacientes"
       />
-      <NavItemIcon action={() => auth.logout()} src={icon_url} />
+
+      <div className="flex gap-6">
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <AiFillBell
+            size={25}
+            color="white"
+            className="hover:rotate-[-6deg]"
+          />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.32))",
+              mt: 0.5,
+              width: "400px",
+              maxHeight: "300px",
+              borderRadius: "20px",
+              overflow: "",
+              overflowY: "hidden",
+
+              bgcolor: "#fdfdfd",
+              "&:hover": {
+                overflowY: "auto", // Show scrollbar only on hover
+              },
+              "&::-webkit-scrollbar": {
+                width: "0.7rem",
+                display: "none",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                borderRadius: "4px",
+                backgroundColor: "rgba(0,0,0,.1)",
+              },
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <div className="flex flex-col">
+            <div className="flex flex-col gap-3 mt-2">
+              {notifications.map((notif) => (
+                <Notification
+                  message={notif.message}
+                  username={notif.username}
+                  time={notif.time}
+                />
+              ))}
+            </div>
+          </div>
+        </Menu>
+        <NavItemIcon
+          action={() => router.push("/psicologo/settings/profile")}
+          src={icon_url}
+        />
+      </div>
+    </div>
+  );
+
+  const menuNav = (
+    <div className="flex space-x-8">
+      <NavItem action={() => router.push("/login")} label="Login" />
+      <NavItem
+        action={() => router.push("/registerpaciente")}
+        label="Registrar"
+      />
+      <li className="hover:cursor-pointer hover:rotate-[-2deg] ">
+        <a
+          className="block rounded text-white hover:text-gray-200 p-2 text-xl "
+          href="#about"
+        >
+          Sobre
+        </a>
+      </li>
     </div>
   );
 

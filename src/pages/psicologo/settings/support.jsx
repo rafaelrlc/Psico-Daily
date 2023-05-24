@@ -1,16 +1,17 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import PsicologoMessages from "@/components/PsicologoMessages";
+import Settings from "@/components/Settings";
 import PrivateRoute from "@/components/Routes/PrivateRoute";
-const psicologo = () => {
+
+const SettingsSupport = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        <PsicologoMessages />
+      <PrivateRoute allowedRoute={"Psicolgo"}>
+        <Settings settingsType="support" userType={"psico"} />
       </PrivateRoute>
     </div>
   );
 };
 
-export default psicologo;
+export default SettingsSupport;

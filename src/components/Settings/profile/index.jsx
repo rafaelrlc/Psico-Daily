@@ -7,10 +7,16 @@ import { useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useAuth } from "@/context/auth/authProvider";
 import api from "@/services/api";
-
-const schema = z.object({
-  currentPassword: z.string().nonempty("Campo Obrigatório"),
+import toast, { Toaster } from "react-hot-toast";
+const schemaPassword = z.object({
+  cpf: z.string().nonempty("Campo Obrigatório"),
+  nome: z.string().nonempty("Campo Obrigatório"),
+  userEmail: z.string().nonempty("Campo Obrigatório"),
+  currentPassword: z.string(),
   newPassword: z.string(),
+});
+
+const schemaNoPassword = z.object({
   cpf: z.string().nonempty("Campo Obrigatório"),
   nome: z.string().nonempty("Campo Obrigatório"),
   userEmail: z.string().nonempty("Campo Obrigatório"),
@@ -34,7 +40,7 @@ const EditData = () => {
   } = useForm({
     reValidateMode: "onChange",
     mode: "all",
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schemaPassword),
     defaultValues: async () => {
       try {
         const response = await api.get("/user", config);
@@ -58,21 +64,58 @@ const EditData = () => {
   const [showPassowrdCurrent, setShowPasswordCurrent] = useState(false);
   const [showPassowrdNew, setShowPasswordNew] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const { nome, userEmail, cpf, currentPassword, newPassword } = data;
     console.log(data);
+    console.log(currentPassword, newPassword);
+
+    const newCredentials = {
+      newName: nome,
+      newEmail: userEmail,
+      cpf: cpf,
+    };
+
+    const passwordChange = {
+      password: currentPassword,
+      newPassword: newPassword,
+    };
+
+    if (currentPassword !== "" && newPassword !== "") {
+      console.log("trocou sneha");
+      try {
+        const response = await api.put(
+          "/change_password",
+          passwordChange,
+          config
+        );
+        console.log(response);
+        toast.success("Senha alterada com sucesso.");
+        //auth.logout();
+      } catch (error) {
+        toast.error("Erro ao alterar senha.");
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await api.put("/user", newCredentials, config);
+        toast.success("Credenciais alteradas com sucesso.");
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+        toast.error("Erro ao alterar os dados.");
+      }
+    }
   };
 
   return (
-    <form className="flex flex-col " onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid xs={6}>
             <div className={`mb-4 basis-1/2`}>
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Nome
-              </label>
+              <label className="block text-gray-700 text-sm mb-2">Nome</label>
               <input
-                className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6 "
                 type="text"
                 placeholder="Seu nome"
                 {...register("nome")}
@@ -84,11 +127,11 @@ const EditData = () => {
           </Grid>
           <Grid xs={6}>
             <div className={`mb-4 basis-1/2`}>
-              <label className="block text-gray-700 text-sm font-bold mb-2 w-full">
+              <label className="block text-gray-700 text-sm mb-2 w-full">
                 CPF
               </label>
               <input
-                className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                 type="text"
                 placeholder="CPF"
                 disabled
@@ -101,11 +144,11 @@ const EditData = () => {
           </Grid>
           <Grid xs={12}>
             <div className={`mb-4`}>
-              <label className="block text-gray-700 text-sm font-bold mb-2 w-full">
+              <label className="block text-gray-700 text-sm mb-2 w-full">
                 E-mail
               </label>
               <input
-                className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                 type="email"
                 placeholder="E-mail"
                 {...register("userEmail")}
@@ -115,14 +158,15 @@ const EditData = () => {
               </span>
             </div>
           </Grid>
+
           <Grid xs={12}>
             <div className={`mb-4`}>
-              <label className="block text-gray-700 text-sm font-bold mb-2 w-full">
+              <label className="block text-gray-700 text-sm mb-2 w-full">
                 Senha Atual
               </label>
               <div className="relative">
                 <input
-                  className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                  className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                   type={showPassowrdCurrent ? "text" : "password"}
                   placeholder="Senha Atual"
                   {...register("currentPassword")}
@@ -149,12 +193,12 @@ const EditData = () => {
           </Grid>
           <Grid xs={12}>
             <div className={`mb-4`}>
-              <label className="block text-gray-700 text-sm font-bold mb-2 w-full">
+              <label className="block text-gray-700 text-sm mb-2 w-full">
                 Senha Nova{" "}
               </label>
               <div className="relative">
                 <input
-                  className="shadow appearance-none border-[1px] border-gray-500 rounded-md w-full py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                  className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                   type={showPassowrdNew ? "text" : "password"}
                   placeholder="Senha Nova"
                   {...register("newPassword")}
@@ -181,20 +225,22 @@ const EditData = () => {
         </Grid>
       </Box>
 
-      <div className="flex md:flex-row  flex-col-reverse gap-3">
+      <div className="flex md:flex-row  flex-col-reverse gap-3 ">
         <button
           type="button"
           onClick={() => reset()}
-          className="w-[100%] md:w-[100px] h-[45px] border-[2px] border-indigo-600  py-2 rounded-xl bg-[#ffffff] hover:bg-[#574dc1] hover:text-white text-indigo-700"
+          className="w-[100%] md:w-[100px] h-[45px] hover:text-gray-800 bg-gray-100 rounded-xl hover:bg-gray-200"
         >
           Cancelar
         </button>
+        <Toaster />
         <button
           type="submit"
-          className="w-[100%] md:w-[100px] h-[45px] shadow py-2 rounded-xl bg-[#574dc1] hover:bg-[#41389d] text-white"
+          className="w-[100%] md:w-[100px] h-[45px] py-2 rounded-xl bg-[#574dc1] hover:bg-[#41389d] text-white"
         >
           Salvar
         </button>
+        <Toaster />
       </div>
     </form>
   );

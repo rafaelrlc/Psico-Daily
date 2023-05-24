@@ -11,7 +11,13 @@ export default function Home() {
 
   useEffect(() => {
     if (auth.accessToken !== null) {
-      router.push("/paciente/menu");
+      if (auth.role == "Paciente") {
+        router.push("/paciente/registro");
+      } else if (auth.role == "Psicologo") {
+        router.push("/psicologo/info");
+      } else {
+        auth.logout();
+      }
     }
   }, []);
 

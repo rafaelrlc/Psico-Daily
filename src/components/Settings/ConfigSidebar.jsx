@@ -6,41 +6,43 @@ import { useAuth } from "@/context/auth/authProvider";
 const ConfigSidebar = () => {
   const auth = useAuth();
   return (
-    <ul className="hidden md:flex flex-col gap-11 items-start justify-start w-[15vw] md:border-r-2 border-gray-400 2xl:text-lg text-base">
+    <ul className="hidden md:flex flex-col gap-12 items-start justify-start w-[15vw] md:border-r-2 border-gray-400 2xl:text-lg">
       <li>
         <h1 className="font-bold text-xl">Configurações</h1>
       </li>
 
       <li>
-        <Link className="flex items-center gap-3" href={"profile"}>
+        <Link className="flex items-center gap-3 text-base" href={"profile"}>
           <BiPencil size={20} />
-          <h2 className="font-bold">Editar Dados</h2>
+          <h2 className="">Editar Dados</h2>
         </Link>
       </li>
+
       <li>
-        <Link className="flex items-center gap-3" href={"alerts"}>
+        <Link className="flex items-center gap-3 text-base" href={"alerts"}>
           <BiBell size={20} />
           <h2>Notificações</h2>
         </Link>
       </li>
+
       <li>
         {" "}
-        <Link className="flex items-center gap-3" href={"image"}>
+        <Link className="flex items-center gap-3 text-base" href={"image"}>
           <BiPhotoAlbum size={20} />
-          <h2>Foto de Perfil</h2>
+          <h2>Perfil</h2>
         </Link>
       </li>
       <li>
-        <Link className="flex items-center gap-3" href={"support"}>
+        <Link className="flex items-center gap-3 text-base" href={"support"}>
           <BiHelpCircle size={20} className="font-bold" />
           <h2>Suporte</h2>
         </Link>
       </li>
       <li>
-        <button className="flex items-center gap-3">
-          <RiLogoutBoxRLine size={20} className="font-bold" />
+        <button className="flex items-center gap-3 text-base">
+          <RiLogoutBoxRLine size={20} className="text-base" />
           <h2
-            className="font-bold hover:text-red-600 hover:cursor-pointer"
+            className="hover:text-red-600 hover:cursor-pointer"
             onClick={() => auth.logout()}
           >
             Logout
