@@ -6,11 +6,8 @@ import PrivateRoute from "@/components/Routes/PrivateRoute";
 const SettingsImage = () => {
   return (
     <div>
-      <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        {" "}
-        <Settings settingsType="image" userType={"patient"} />
-      </PrivateRoute>
+      <Navbar type="patient" />{" "}
+      <Settings settingsType="image" userType={"patient"} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Homepage = () => {
   return (
     <div className="">
       <Navbar type="menu" />
-      <div className="flex justify-center items-center h-[100vh]">
+      <div className="flex justify-center items-center h-[115vh]">
         <div className="flex md:flex-row flex-col justify-center items-center 2xl:max-w-[1540px] max-w-[1240px]">
           <div className="flex flex-col mx-10  items-center lg:items-start justify-center">
             <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
@@ -43,28 +43,28 @@ const Homepage = () => {
           my: 4,
         }}
       />
-      <div class="bg-white py-24 sm:py-24" id="about">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="mx-auto max-w-2xl lg:text-center">
-            <h2 class="text-base font-semibold leading-7 text-indigo-700">
+      <div className="bg-white py-24 sm:py-24" id="about">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-indigo-700">
               Deploy faster
             </h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Everything you need to deploy your app
             </p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8 text-gray-600">
               Quis tellus eget adipiscing convallis sit sit eget aliquet quis.
               Suspendisse eget egestas a elementum pulvinar et feugiat blandit
               at. In mi viverra elit nunc.
             </p>
           </div>
-          <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-            <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-              <div class="relative pl-16">
-                <dt class="text-base font-semibold leading-7 text-gray-900">
-                  <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+              <div className="relative pl-16">
+                <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                     <svg
-                      class="h-6 w-6 text-white"
+                      className="h-6 w-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
@@ -80,16 +80,16 @@ const Homepage = () => {
                   </div>
                   Push to deploy
                 </dt>
-                <dd class="mt-2 text-base leading-7 text-gray-600">
+                <dd className="mt-2 text-base leading-7 text-gray-600">
                   Morbi viverra dui mi arcu sed. Tellus semper adipiscing
                   suspendisse semper morbi. Odio urna massa nunc massa.
                 </dd>
               </div>
-              <div class="relative pl-16">
-                <dt class="text-base font-semibold leading-7 text-gray-900">
-                  <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+              <div className="relative pl-16">
+                <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                     <svg
-                      class="h-6 w-6 text-white"
+                      className="h-6 w-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
@@ -105,16 +105,16 @@ const Homepage = () => {
                   </div>
                   SSL certificates
                 </dt>
-                <dd class="mt-2 text-base leading-7 text-gray-600">
+                <dd className="mt-2 text-base leading-7 text-gray-600">
                   Sit quis amet rutrum tellus ullamcorper ultricies libero dolor
                   eget. Sem sodales gravida quam turpis enim lacus amet.
                 </dd>
               </div>
-              <div class="relative pl-16">
-                <dt class="text-base font-semibold leading-7 text-gray-900">
-                  <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+              <div className="relative pl-16">
+                <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                     <svg
-                      class="h-6 w-6 text-white"
+                      className="h-6 w-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
@@ -130,16 +130,16 @@ const Homepage = () => {
                   </div>
                   Simple queues
                 </dt>
-                <dd class="mt-2 text-base leading-7 text-gray-600">
+                <dd className="mt-2 text-base leading-7 text-gray-600">
                   Quisque est vel vulputate cursus. Risus proin diam nunc
                   commodo. Lobortis auctor congue commodo diam neque.
                 </dd>
               </div>
-              <div class="relative pl-16">
-                <dt class="text-base font-semibold leading-7 text-gray-900">
-                  <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+              <div className="relative pl-16">
+                <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                     <svg
-                      class="h-6 w-6 text-white"
+                      className="h-6 w-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
@@ -155,7 +155,7 @@ const Homepage = () => {
                   </div>
                   Advanced security
                 </dt>
-                <dd class="mt-2 text-base leading-7 text-gray-600">
+                <dd className="mt-2 text-base leading-7 text-gray-600">
                   Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt
                   mattis aliquet hac quis. Id hac maecenas ac donec pharetra
                   eget.

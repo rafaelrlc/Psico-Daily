@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import IndividualMessage from "./MessageComponents/IndividualMessage";
 import NewRegistro from "./MessageComponents/NewRegistro";
 
-const Registro = () => {
+const PacienteRegistros = () => {
   const [registros, setRegistros] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,12 +50,12 @@ const Registro = () => {
   }, []);
 
   return (
-    <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
-      <div className="flex md:gap-10">
+    <div className="md:h-[100vh] h-[105vh] flex flex-col items-center justify-center">
+      <div className="flex md:gap-10 mt-[5rem]">
         <div className="flex flex-col items-center">
           <h1 className="py-5 text-base text-gray-800">Seus Registros</h1>
 
-          <div className="flex flex-col gap-4 h-[70vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
+          <div className="flex flex-col gap-4 h-[71vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
             {isLoading ? (
               <div className="flex animate-pulse">
                 <div className="w-full ">
@@ -93,4 +93,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default PacienteRegistros;

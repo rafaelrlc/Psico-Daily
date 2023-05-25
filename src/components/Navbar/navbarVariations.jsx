@@ -168,6 +168,12 @@ export const NavHelper = ({ type }) => {
         label="Pacientes"
       />
 
+      <NavItemIcon
+        action={() => router.push("/psicologo/addpacientes")}
+        icon={BsPeopleFill}
+        label="Adicionar Pacientes"
+      />
+
       <div className="flex gap-6">
         <IconButton
           onClick={handleClick}

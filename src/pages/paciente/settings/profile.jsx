@@ -7,9 +7,8 @@ const SettingsProfile = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        <Settings settingsType="profile" userType={"patient"} />
-      </PrivateRoute>
+
+      <Settings settingsType="profile" userType={"patient"} />
     </div>
   );
 };

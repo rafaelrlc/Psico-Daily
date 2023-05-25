@@ -7,9 +7,8 @@ const SettingsAlert = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        <Settings settingsType="alerts" userType={"patient"} />
-      </PrivateRoute>
+
+      <Settings settingsType="alerts" userType={"patient"} />
     </div>
   );
 };

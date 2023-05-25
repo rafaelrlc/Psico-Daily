@@ -6,9 +6,7 @@ const psicologo = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        <PsicologoMessages />
-      </PrivateRoute>
+      <PsicologoMessages />
     </div>
   );
 };

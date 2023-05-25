@@ -59,22 +59,21 @@ const Consulta = () => {
   return (
     <div>
       <Navbar type="patient" />
-      <PrivateRoute allowedRoute={"Paciente"}>
-        <div className="m-10">
-          <h1 className="text-center text-3xl pb-5">Consultas</h1>
-          <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 items-center justify-center">
-            {consultas.map((consulta) => (
-              <ConsultaCard
-                startDate={consulta.startDate}
-                key={consulta.id}
-                dia={consulta.dia}
-                hora={consulta.hora}
-                mes={consulta.mes}
-              />
-            ))}
-          </ul>
-        </div>
-      </PrivateRoute>
+
+      <div>
+        <h1 className="text-center text-3xl pb-5">Consultas</h1>
+        <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 items-center justify-center">
+          {consultas.map((consulta) => (
+            <ConsultaCard
+              startDate={consulta.startDate}
+              key={consulta.id}
+              dia={consulta.dia}
+              hora={consulta.hora}
+              mes={consulta.mes}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

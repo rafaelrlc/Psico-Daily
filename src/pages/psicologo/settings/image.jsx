@@ -7,9 +7,8 @@ const SettingsImage = () => {
   return (
     <div>
       <Navbar type="psico" />
-      <PrivateRoute allowedRoute={"Psicologo"}>
-        <Settings settingsType="image" userType={"psico"} />
-      </PrivateRoute>
+
+      <Settings settingsType="image" userType={"psico"} />
     </div>
   );
 };

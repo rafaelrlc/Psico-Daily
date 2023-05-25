@@ -82,7 +82,7 @@ const Login = (props) => {
     <>
       <Navbar type={"menu"} />
       <form
-        className="flex items-center h-[calc(100vh-85px)]"
+        className="flex items-center h-[110vh]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">

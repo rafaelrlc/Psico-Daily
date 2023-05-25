@@ -1,14 +1,14 @@
 import Navbar from "@/components/Navbar";
 import PrivateRoute from "@/components/Routes/PrivateRoute";
-
-const Consultas = () => {
+import AdicionarPacientes from "@/components/AdicionarPacientes";
+const AddPacientes = () => {
   return (
     <div>
       <Navbar type="psico" />
 
-      <h1>consultas</h1>
+      <AdicionarPacientes></AdicionarPacientes>
     </div>
   );
 };
 
-export default Consultas;
+export default AddPacientes;
