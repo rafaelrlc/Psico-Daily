@@ -1,41 +1,48 @@
 export const fake_psico_notifications = [
   {
+    id: "1",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
+    id: "2",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
-    message: "Não se esqueça de fazer o que eu pedi!",
-    username: "Pedro Victor",
-    time: "1 horas atrás",
-  },
-
-  {
+    id: "3",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
+    id: "4",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
+    id: "5",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
+    id: "6",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",
   },
   {
+    id: "7",
+    message: "Não se esqueça de fazer o que eu pedi!",
+    username: "Pedro Victor",
+    time: "1 horas atrás",
+  },
+  {
+    id: "8",
     message: "Não se esqueça de fazer o que eu pedi!",
     username: "Pedro Victor",
     time: "1 horas atrás",

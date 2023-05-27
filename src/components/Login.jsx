@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 
 const Login = (props) => {
   const [createAcc, setCreateAcc] = useState(props.register);
@@ -19,7 +19,7 @@ const Login = (props) => {
     resolver: yupResolver(props.schema),
   });
 
-  const { api } = axiosApi();
+  const { api } = AxiosApi();
   const router = useRouter();
   const auth = useContext(AuthContext);
 

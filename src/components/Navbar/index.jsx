@@ -22,8 +22,8 @@ const Navbar = () => {
             {!mobileNav && (
               <div className="flex items-center">
                 <img
-                  src="https://media.discordapp.net/attachments/1025173249543393330/1111421303065432144/p-low-resolution-logo-white-on-transparent-background.png?width=490&height=627"
-                  className="h-8 mr-2"
+                  src="https://media.discordapp.net/attachments/1025173249543393330/1111938363285585970/psicodaily-high-resolution-logo-white-on-transparent-background.png?width=1410&height=218"
+                  className="h-8"
                   alt="Logo"
                 />
                 <span className="self-center md:text-[1.75rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg]"></span>
@@ -31,7 +31,6 @@ const Navbar = () => {
             )}
           </a>
         </div>
-
         <ul className="lg:flex text-[0.95rem] hidden">
           <NavHelper type={role} />
         </ul>

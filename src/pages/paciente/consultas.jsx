@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import ConsultaCard from "@/components/ConsultaCard";
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 
 const Consulta = () => {
-  const { privateApi } = axiosApi();
+  const { privateApi } = AxiosApi();
   const [consultas, setConsultas] = useState([]);
 
   const fetchItems = async () => {

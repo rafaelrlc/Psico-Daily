@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import IndividualMessage from "./MessageComponents/IndividualMessage";
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 
 const PsicologoMessages = () => {
   const [registros, setRegistros] = useState([]);
 
-  const { privateApi } = axiosApi();
+  const { privateApi } = AxiosApi();
 
   const fetchItems = async () => {
     try {

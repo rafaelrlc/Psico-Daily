@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import { useAuth } from "@/context/auth/authProvider";
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 
 const AdicionarPacientes = () => {
-  const { privateApi } = axiosApi();
+  const { privateApi } = AxiosApi();
 
   const [email, setEmail] = useState("");
   const data = {

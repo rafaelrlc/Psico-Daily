@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 import IndividualMessage from "./MessageComponents/IndividualMessage";
 import NewRegistro from "./MessageComponents/NewRegistro";
 
 const PacienteRegistros = () => {
   const [registros, setRegistros] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { privateApi } = axiosApi();
+  const { privateApi } = AxiosApi();
 
   const fetchItems = async () => {
     try {

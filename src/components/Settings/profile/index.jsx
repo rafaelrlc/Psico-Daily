@@ -7,12 +7,12 @@ import { Box } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
-import axiosApi from "@/services/api";
+import AxiosApi from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaPassword } from "../../../../utils/schemas/schemas";
 
 const EditData = () => {
-  const { privateApi } = axiosApi();
+  const { privateApi } = AxiosApi();
 
   const {
     register,

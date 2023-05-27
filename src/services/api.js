@@ -3,7 +3,7 @@ import { useAuth } from "@/context/auth/authProvider";
 
 const BASE_URL = "http://localhost:3005";
 
-const axiosApi = () => {
+const AxiosApi = () => {
   const { accessToken } = useAuth();
   const privateApi = axios.create({
     baseURL: BASE_URL,
@@ -20,4 +20,4 @@ const axiosApi = () => {
   return { privateApi, api };
 };
 
-export default axiosApi;
+export default AxiosApi;
