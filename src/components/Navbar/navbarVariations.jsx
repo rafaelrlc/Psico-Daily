@@ -105,7 +105,7 @@ export const NavHelper = ({ type }) => {
         label="Adicionar Pacientes"
       />
 
-      <div className="flex gap-6">
+      <div className="flex gap-6 items-center">
         <NotificationCard
           icon={AiFillBell}
           requestNotifications={[]}

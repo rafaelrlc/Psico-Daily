@@ -14,6 +14,7 @@ const NotificationCard = (props) => {
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
+    props.fetchNotifs();
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {

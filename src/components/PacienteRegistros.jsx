@@ -6,13 +6,18 @@ import NewRegistro from "./MessageComponents/NewRegistro";
 const PacienteRegistros = () => {
   const [registros, setRegistros] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const { privateApi } = AxiosApi();
 
   const fetchItems = async () => {
     try {
       const response = await privateApi.get("/registro");
-      console.log(response);
       setRegistros(response.data.registers);
+      if (response.data.registers.length > 0) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,44 +51,50 @@ const PacienteRegistros = () => {
     fetchItems();
   }, []);
 
+  console.log(registros.length);
   return (
     <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
       <div className="flex md:gap-10">
-        <div className="flex flex-col items-center">
-          <h1 className="py-5 text-base text-gray-800">Seus Registros</h1>
+        {isVisible && (
+          <div className="flex flex-col items-center">
+            <h1 className="py-5 text-gray-800 text-2xl">Seus Registros</h1>
 
-          <div className="flex flex-col gap-4 h-[70vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
-            {isLoading ? (
-              <div className="flex animate-pulse">
-                <div className="w-full ">
-                  <ul className="space-y-4">
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <li
-                        key={index}
-                        className="w-full h-[11vh] bg-gray-100 rounded-md"
-                      ></li>
-                    ))}
-                  </ul>
+            <div className="flex flex-col gap-4 h-[70vh] md:w-[65vw] w-[80vw] md:overflow-y-auto custom-scrollbar-mobile">
+              {isLoading ? (
+                <div className="flex animate-pulse">
+                  <div className="w-full ">
+                    <ul className="space-y-4">
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <li
+                          key={index}
+                          className="w-full h-[11vh] bg-gray-100 rounded-md"
+                        ></li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              registros.map((register) => (
-                <IndividualMessage
-                  key={register._id}
-                  title={register.titulo}
-                  description={register.text}
-                  date={register.data}
-                  id={register._id}
-                  removeRegistro={removeRegistro}
-                />
-              ))
-            )}
+              ) : (
+                registros.map((register) => (
+                  <IndividualMessage
+                    key={register._id}
+                    title={register.titulo}
+                    description={register.text}
+                    date={register.data}
+                    id={register._id}
+                    removeRegistro={removeRegistro}
+                  />
+                ))
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="items-center justify-center flex-col text-xl hidden md:flex">
-          <h1 className="py-4 text-base text-gray-800">Novo Registro</h1>
-          <NewRegistro addRegistro={addRegistro}></NewRegistro>
+          <h1 className="py-4 text-2xl text-gray-800">Novo Registro</h1>
+          <NewRegistro
+            addRegistro={addRegistro}
+            registroLength={registros.length}
+          ></NewRegistro>
         </div>
       </div>
     </div>

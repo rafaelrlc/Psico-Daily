@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { newRegistroSchema } from "../../../utils/schemas/schemas";
 
-const NewRegistro = ({ addRegistro }) => {
+const NewRegistro = ({ addRegistro, registroLength }) => {
   const {
     register,
     handleSubmit,
@@ -23,7 +23,11 @@ const NewRegistro = ({ addRegistro }) => {
   return (
     <div className="sm:block hidden">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-[25vw] flex flex-col justify-center items-start gap-3 ">
+        <div
+          className={`${
+            registroLength > 0 ? "w-[25vw]" : "w-[90vw]"
+          } flex flex-col justify-center items-start gap-3 `}
+        >
           <input
             className="rounded-lg w-full py-3 px-3 h-[6vh] text-black text-base border-[1px] border-gray-500 outline-none box-border shadow"
             placeholder="Título"
@@ -48,7 +52,7 @@ const NewRegistro = ({ addRegistro }) => {
         <div className="text-center">
           <button
             type="submit"
-            className="focus:outline-none text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2  focus:ring-indigo-900 text-base rounded-lg px-12 py-2"
+            className="focus:outline-none text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2  focus:ring-indigo-900 text-base rounded-lg px-12 py-2 w-full"
           >
             Registrar
           </button>
