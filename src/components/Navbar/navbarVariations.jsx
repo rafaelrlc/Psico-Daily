@@ -8,15 +8,26 @@ import { BsPeopleFill } from "react-icons/bs";
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { NavItemIcon, NavItem } from "./NavItem";
-import Notification from "../Notification";
 import { fake_psico_notifications } from "../../../utils/ficData";
-
 import { v4 as uuidv4 } from "uuid";
+import {
+  MessageNotification,
+  RequestNotification,
+} from "../Notifications/Notification";
+import { useAuth } from "@/context/auth/authProvider";
+import useConfig from "../../../utils/functions/useConfig";
+import axiosApi from "@/services/api";
 
 export const NavHelper = ({ type }) => {
   const router = useRouter();
+  const { api, privateApi } = axiosApi();
+  const { accessToken } = useAuth();
+  const config = useConfig(accessToken);
+
+  const [messageNotifications, setMessageNotifications] = useState([]);
+  const [requestNotifications, setRequestNotifications] = useState([]);
+
   const [anchorEl, setAnchorEl] = useState(null);
-  const [notifications, setNotifications] = useState([]);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -27,16 +38,51 @@ export const NavHelper = ({ type }) => {
   };
 
   let icon_url =
-    "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
+    "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png"; // vai sumir dps
+
+  const fetchNotifs = async () => {
+    try {
+      const response = await privateApi.get("/notif");
+      setRequestNotifications(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // dar fetch nas mensagens
+    setMessageNotifications(fake_psico_notifications);
+  };
 
   useEffect(() => {
+    fetchNotifs();
+
     //get user icon
     icon_url =
       "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
-
-    // get notifications
-    setNotifications(fake_psico_notifications);
   }, []);
+
+  const handleRequestAccept = async (notifId) => {
+    const data = {
+      notifId: notifId,
+    };
+    try {
+      const response = await privateApi.post("/accept", data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      fetchNotifs();
+    }
+  };
+
+  const handleRequestReject = async (id) => {
+    try {
+      await privateApi.delete(`/notif/${id}`);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      fetchNotifs();
+    }
+  };
 
   const patientNav = (
     <div className="flex items-center gap-4">
@@ -128,8 +174,16 @@ export const NavHelper = ({ type }) => {
         >
           <div className="flex flex-col">
             <div className="flex flex-col gap-3 mt-2">
-              {notifications.map((notif) => (
-                <Notification
+              {requestNotifications.map((notif) => (
+                <RequestNotification
+                  key={notif._id}
+                  id={notif._id}
+                  handleAccept={handleRequestAccept}
+                  handleReject={handleRequestReject}
+                />
+              ))}
+              {messageNotifications.map((notif) => (
+                <MessageNotification
                   message={notif.message}
                   username={notif.username}
                   time={notif.time}
@@ -234,7 +288,6 @@ export const NavHelper = ({ type }) => {
                 width: 10,
                 height: 10,
                 bgcolor: "background.paper",
-                transform: "translateY(-50%) rotate(45deg)",
                 zIndex: 0,
               },
             },
@@ -244,7 +297,7 @@ export const NavHelper = ({ type }) => {
         >
           <div className="flex flex-col">
             <div className="flex flex-col gap-3 mt-2">
-              {notifications.map((notif) => (
+              {messageNotifications.map((notif) => (
                 <Notification
                   message={notif.message}
                   username={notif.username}
@@ -281,13 +334,16 @@ export const NavHelper = ({ type }) => {
     </div>
   );
 
-  return (
-    <div>
-      {type == "psico" && psicoNav}
-      {type == "menu" && menuNav}
-      {type == "patient" && patientNav}
-    </div>
-  );
+  let navRender = patientNav;
+  if (type == "Paciente") {
+    navRender = patientNav;
+  } else if (type == "Psicologo") {
+    navRender = psicoNav;
+  } else {
+    navRender = menuNav;
+  }
+
+  return <div>{navRender}</div>;
 };
 
 export const MobileNavHelper = ({ setMobileNav, type }) => {
@@ -417,11 +473,12 @@ export const MobileNavHelper = ({ setMobileNav, type }) => {
       </li>
     </div>
   );
+
   return (
     <div>
       {type == "menu" && menuMobileNav}
-      {type == "patient" && patientMobileNav}
-      {type == "psico" && psicoMobileNav}
+      {type == "Paciente" && patientMobileNav}
+      {type == "Psicologo" && psicoMobileNav}
     </div>
   );
 };

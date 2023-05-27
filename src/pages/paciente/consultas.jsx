@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import useConfig from "../../../utils/functions/useConfig";
-import api from "@/services/api";
 import { useEffect } from "react";
-import { useAuth } from "@/context/auth/authProvider";
 import ConsultaCard from "@/components/ConsultaCard";
-import PrivateRoute from "@/components/Routes/PrivateRoute";
+import axiosApi from "@/services/api";
+
 const Consulta = () => {
-  const { accessToken } = useAuth();
-  const config = useConfig(accessToken);
+  const { privateApi } = axiosApi();
   const [consultas, setConsultas] = useState([]);
 
   const fetchItems = async () => {
     try {
-      const response = await api.get("/consulta", config);
+      const response = await privateApi.get("/consulta");
       console.log(response);
 
       const formattedData = response.data.map((item) => {
@@ -58,8 +54,6 @@ const Consulta = () => {
 
   return (
     <div>
-      <Navbar type="patient" />
-
       <div>
         <h1 className="text-center text-3xl pb-5">Consultas</h1>
         <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 items-center justify-center">

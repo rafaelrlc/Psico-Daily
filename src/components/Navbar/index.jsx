@@ -1,63 +1,39 @@
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavHelper, MobileNavHelper } from "./navbarVariations";
-import InviteCard from "../InviteCard";
-import useConfig from "../../../utils/functions/useConfig";
 import { useAuth } from "@/context/auth/authProvider";
-import api from "@/services/api";
-const Navbar = ({ type }) => {
-  const { accessToken } = useAuth();
-  const router = useRouter();
+import dynamic from "next/dynamic";
 
-  const config = useConfig(accessToken);
-
+const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
-  const [friendRequests, setFriendRequests] = useState([]);
-  const [showFriendRequests, setShowFriendRequests] = useState(true);
-
-  const fetchNotifs = async () => {
-    try {
-      const response = await api.get("/notif", config);
-      console.log(response);
-      setFriendRequests(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchNotifs();
-  }, []);
+  const { role } = useAuth();
+  const router = useRouter();
 
   return (
     <nav>
       <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#564cc1] border-gray-200 custom-shadow z-50 text-white">
-        {showFriendRequests &&
-          friendRequests.map((fr) => (
-            <InviteCard
-              nome={fr.name}
-              notifId={fr._id}
-              fetchNotifs={fetchNotifs}
-              setShowFriendRequests={setShowFriendRequests}
-            />
-          ))}
-
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
             {!mobileNav && (
-              <span className="self-center md:text-[1.75rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg] ">
-                PsicoDaily
-              </span>
+              <div className="flex items-center">
+                <img
+                  src="https://media.discordapp.net/attachments/1025173249543393330/1111421303065432144/p-low-resolution-logo-white-on-transparent-background.png?width=490&height=627"
+                  className="h-8 mr-2"
+                  alt="Logo"
+                />
+                <span className="self-center md:text-[1.75rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg]"></span>
+              </div>
             )}
           </a>
         </div>
 
         <ul className="lg:flex text-[0.95rem] hidden">
-          <NavHelper type={type} />
+          <NavHelper type={role} />
         </ul>
         {!mobileNav && (
           <div
@@ -65,8 +41,7 @@ const Navbar = ({ type }) => {
             className="block lg:hidden ml-100"
           >
             <div>
-              {" "}
-              <AiOutlineMenu className="hover:cursor-pointer text-2xl"></AiOutlineMenu>
+              <AiOutlineMenu className="hover:cursor-pointer text-2xl" />
             </div>
           </div>
         )}
@@ -85,12 +60,12 @@ const Navbar = ({ type }) => {
             onClick={() => setMobileNav(!mobileNav)}
           />
         </div>
-        <ul className="text-center text-2xl  items-start justify-center font-bold">
-          <MobileNavHelper type={type} setMobileNav={setMobileNav} />
+        <ul className="text-center text-2xl items-start justify-center font-bold">
+          <MobileNavHelper type={role} setMobileNav={setMobileNav} />
         </ul>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default dynamic(() => Promise.resolve(Navbar), { ssr: false });

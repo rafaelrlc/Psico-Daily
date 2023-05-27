@@ -1,5 +1,5 @@
 import * as yup from "yup";
-
+import { z } from "zod";
 export const registerPacienteSchema = yup.object({
   name: yup
     .string()
@@ -92,4 +92,12 @@ export const editDataSchema = yup.object({
     .string()
     .max(30, "Limite máximo de 300 caracteres.")
     .required("Campo obrigatório. Informe uma descrição."),
+});
+
+export const schemaPassword = z.object({
+  cpf: z.string().nonempty("Campo Obrigatório"),
+  nome: z.string().nonempty("Campo Obrigatório"),
+  userEmail: z.string().nonempty("Campo Obrigatório"),
+  currentPassword: z.string(),
+  newPassword: z.string(),
 });

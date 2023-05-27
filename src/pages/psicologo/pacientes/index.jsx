@@ -4,7 +4,6 @@ import PatientsList from "@/components/PacienteListing/PatientsList";
 const Pacientes = () => {
   return (
     <div>
-      <Navbar type="psico" />
       <PatientsList />
     </div>
   );

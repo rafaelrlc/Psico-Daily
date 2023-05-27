@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
-import api from "@/services/api";
+import axiosApi from "@/services/api";
 
 const Login = (props) => {
   const [createAcc, setCreateAcc] = useState(props.register);
@@ -19,11 +19,9 @@ const Login = (props) => {
     resolver: yupResolver(props.schema),
   });
 
+  const { api } = axiosApi();
   const router = useRouter();
   const auth = useContext(AuthContext);
-  const config = {
-    headers: { "Content-Type": "application/json" },
-  };
 
   const loginUser = async (email, password) => {
     const data = {
@@ -32,11 +30,10 @@ const Login = (props) => {
     };
 
     try {
-      const response = await api.post("/login", data, config);
+      const response = await api.post("/login", data);
       auth.login(response.data.token, response.data.type);
 
       if (response.data.type == "Paciente") {
-        console.log("FOI:", response.data.type);
         router.push("/paciente/registro");
       }
       if (response.data.type == "Psicologo") {
@@ -51,24 +48,33 @@ const Login = (props) => {
   };
 
   const onSubmit = async (data) => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: data?.name,
-        email: data.email,
-        password: data.password,
-        cpf: data?.cpf,
-        crp: data?.crp,
-      }),
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     name: data?.name,
+    //     email: data.email,
+    //     password: data.password,
+    //     cpf: data?.cpf,
+    //     crp: data?.crp,
+    //   }),
+    // };
+
+    const userData = {
+      name: data?.name,
+      email: data.email,
+      password: data.password,
+      cpf: data?.cpf,
+      crp: data?.crp,
     };
 
-    let req_url = "http://localhost:3005/pac_register";
-    if (props.type == "psico") req_url = "http://localhost:3005/psic_register";
+    let req_url = "/pac_register";
+    if (props.type == "psico") req_url = "/psic_register";
 
     if (createAcc) {
       try {
-        const response = await fetch(req_url, requestOptions);
+        const response = await api.post(req_url, userData);
+        console.log(response);
         loginUser(data.email, data.password);
       } catch (error) {
         console.log(error);
@@ -80,9 +86,8 @@ const Login = (props) => {
 
   return (
     <>
-      <Navbar type={"menu"} />
       <form
-        className="flex items-center h-[110vh]"
+        className="flex items-center h-[100vh]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">

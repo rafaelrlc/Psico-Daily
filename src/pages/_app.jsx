@@ -1,10 +1,13 @@
 import "../../styles/global.css";
 import AuthContextProvider from "@/context/auth/authProvider";
-import { Toaster } from "react-hot-toast";
+import MainLayout from "@/components/Layouts/MainLayout";
 export default function App({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <Component {...pageProps} />
+      <MainLayout>
+        {" "}
+        <Component {...pageProps} />
+      </MainLayout>
     </AuthContextProvider>
   );
 }

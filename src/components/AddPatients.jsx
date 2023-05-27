@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import api from "@/services/api";
-import useConfig from "../../utils/functions/useConfig";
+
 import { useAuth } from "@/context/auth/authProvider";
+import axiosApi from "@/services/api";
+
 const AdicionarPacientes = () => {
-  const auth = useAuth();
-  const config = useConfig(auth.accessToken);
+  const { privateApi } = axiosApi();
 
   const [email, setEmail] = useState("");
   const data = {
     pacEmail: email,
   };
   const submitHandle = async () => {
-    console.log("Submit button pressed");
     console.log("Email:", email);
     try {
-      const response = await api.post("/notif", data, config);
+      const response = await privateApi.post("/notif", data);
       console.log(response);
     } catch (error) {
       console.log(error);

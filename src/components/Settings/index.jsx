@@ -25,7 +25,7 @@ const Settings = ({ settingsType, userType }) => {
   }
   return (
     <div className="flex justify-center items-center mx-10">
-      <div className="flex md:gap-20 md:w-full items-start justify-center absolute md:top-[32vh] top-[25vh]">
+      <div className="flex md:gap-20 md:w-full items-start justify-center mt-[22vh]">
         <ConfigSidebar />
         <div className="md:w-[55vw] mx-10">{componentToRender}</div>
       </div>

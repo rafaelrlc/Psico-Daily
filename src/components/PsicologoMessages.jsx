@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "@/context/auth/authProvider";
-import api from "@/services/api";
 import IndividualMessage from "./MessageComponents/IndividualMessage";
-import useConfig from "../../utils/functions/useConfig";
+import axiosApi from "@/services/api";
+
 const PsicologoMessages = () => {
   const [registros, setRegistros] = useState([]);
-  const { accessToken } = useAuth();
-  const config = useConfig(accessToken);
+
+  const { privateApi } = axiosApi();
 
   const fetchItems = async () => {
     try {
-      const response = await api.get("/registro", config);
-      console.log(response);
+      const response = await privateApi.get("/registro");
       setRegistros(response.data.registers);
     } catch (error) {
       console.log(error);
@@ -28,10 +26,9 @@ const PsicologoMessages = () => {
     };
 
     try {
-      await fetch("http://localhost:3005/registro", {
+      await fetch(`http://localhost:3005/registro/${id}`, {
         method: "DELETE",
         headers,
-        body: JSON.stringify(removeRegistroData),
       });
 
       fetchItems();
@@ -39,8 +36,6 @@ const PsicologoMessages = () => {
       console.log(error);
     }
   };
-
-  const changeCheckMark = (messageId, active) => {};
 
   return (
     <div className="h-full mt-10 flex flex-col items-center justify-center">

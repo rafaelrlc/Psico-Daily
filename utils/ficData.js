@@ -1,5 +1,3 @@
-import Notification from "@/components/Notification";
-
 export const fake_psico_notifications = [
   {
     message: "Não se esqueça de fazer o que eu pedi!",

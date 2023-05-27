@@ -1,8 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import AuthContext from "./authContext";
 import { useRouter } from "next/router";
 
 const AuthContextProvider = ({ children }) => {
+  const router = useRouter();
+
   const [token, setToken] = useState(
     typeof window !== "undefined" ? localStorage.getItem("token") : null
   );
@@ -11,14 +13,13 @@ const AuthContextProvider = ({ children }) => {
     typeof window !== "undefined" ? localStorage.getItem("role") : null
   );
 
-  const router = useRouter();
-
   const loginHandler = (token, userRole) => {
     setToken(token);
-    setRole(role);
     if (typeof window !== "undefined") {
       localStorage.setItem("token", token);
     }
+    setRole(userRole);
+
     if (typeof window !== "undefined") {
       localStorage.setItem("role", userRole);
     }
@@ -29,6 +30,7 @@ const AuthContextProvider = ({ children }) => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("token");
     }
+    setRole(null);
     if (typeof window !== "undefined") {
       localStorage.removeItem("role");
     }

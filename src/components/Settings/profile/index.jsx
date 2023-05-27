@@ -1,36 +1,18 @@
+import { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Box } from "@mui/material";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { useAuth } from "@/context/auth/authProvider";
-import api from "@/services/api";
-import toast, { Toaster } from "react-hot-toast";
-const schemaPassword = z.object({
-  cpf: z.string().nonempty("Campo Obrigatório"),
-  nome: z.string().nonempty("Campo Obrigatório"),
-  userEmail: z.string().nonempty("Campo Obrigatório"),
-  currentPassword: z.string(),
-  newPassword: z.string(),
-});
 
-const schemaNoPassword = z.object({
-  cpf: z.string().nonempty("Campo Obrigatório"),
-  nome: z.string().nonempty("Campo Obrigatório"),
-  userEmail: z.string().nonempty("Campo Obrigatório"),
-});
+import toast, { Toaster } from "react-hot-toast";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+
+import axiosApi from "@/services/api";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schemaPassword } from "../../../../utils/schemas/schemas";
 
 const EditData = () => {
-  const auth = useAuth();
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "x-access-token": auth.accessToken,
-    },
-  };
+  const { privateApi } = axiosApi();
 
   const {
     register,
@@ -43,7 +25,7 @@ const EditData = () => {
     resolver: zodResolver(schemaPassword),
     defaultValues: async () => {
       try {
-        const response = await api.get("/user", config);
+        const response = await privateApi.get("/user");
         console.log(response);
         return {
           nome: response.data.name,
@@ -81,12 +63,10 @@ const EditData = () => {
     };
 
     if (currentPassword !== "" && newPassword !== "") {
-      console.log("trocou sneha");
       try {
-        const response = await api.put(
+        const response = await privateApi.put(
           "/change_password",
-          passwordChange,
-          config
+          passwordChange
         );
         console.log(response);
         toast.success("Senha alterada com sucesso.");
@@ -97,7 +77,7 @@ const EditData = () => {
       }
     } else {
       try {
-        const response = await api.put("/user", newCredentials, config);
+        const response = await privateApi.put("/user", newCredentials);
         toast.success("Credenciais alteradas com sucesso.");
         console.log(response);
       } catch (error) {
