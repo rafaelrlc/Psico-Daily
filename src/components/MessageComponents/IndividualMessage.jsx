@@ -19,7 +19,7 @@ const IndividualMessage = ({
 
   return (
     <div
-      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-500 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start shadow md:max-h-[180px] max-h-[250px]"
+      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-400 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start shadow md:max-h-[180px] max-h-[250px] font-light"
       onMouseEnter={() => setShowCloseButton(true)}
       onMouseLeave={() => setShowCloseButton(false)}
     >

@@ -3,8 +3,9 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
 import { useState } from "react";
 import { NavHelper, MobileNavHelper } from "./navbarVariations";
-import { useAuth } from "@/context/auth/authProvider";
+import useAuth from "@/hooks/useAuth";
 import dynamic from "next/dynamic";
+import Modal from "../../../utils/ModalTest";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -13,18 +14,22 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="flex items-center justify-between w-full px-14 sm:h-[80px] h-[65px] bg-[#564cc1] border-gray-200 custom-shadow z-50 text-white">
+      <div className="flex items-center justify-between w-full md:px-14 px-6 sm:h-[80px] h-[65px] bg-[#564cc1] border-gray-200 custom-shadow z-50 text-white">
         <div>
           <a
             className="flex items-center justify-center mt-1 hover:cursor-pointer"
             onClick={() => router.push("/")}
           >
             {!mobileNav && (
-              <div className="flex items-center">
+              <div className="md:flex items-center">
                 <img
-                  src="https://media.discordapp.net/attachments/1025173249543393330/1111938363285585970/psicodaily-high-resolution-logo-white-on-transparent-background.png?width=1410&height=218"
-                  className="h-8"
+                  src="https://media.discordapp.net/attachments/1025173249543393330/1111937606259851324/psicodaily-high-resolution-logo-color-on-transparent-background.png?width=2116&height=282"
+                  className="h-5 md:block hidden"
                   alt="Logo"
+                />
+                <img
+                  className="h-8 md:hidden block"
+                  src="https://media.discordapp.net/attachments/1025173249543393330/1112577863565193337/p-high-resolution-logo-white-on-transparent-background.png?width=824&height=1060"
                 />
                 <span className="self-center md:text-[1.75rem] text-[1.45rem] font-bold whitespace-nowrap hover:rotate-[-1deg]"></span>
               </div>
@@ -40,7 +45,7 @@ const Navbar = () => {
             className="block lg:hidden ml-100"
           >
             <div>
-              <AiOutlineMenu className="hover:cursor-pointer text-2xl" />
+              <AiOutlineMenu className="hover:cursor-pointer text-3xl" />
             </div>
           </div>
         )}

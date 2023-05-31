@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from "react";
 import IndividualMessage from "./MessageComponents/IndividualMessage";
 import AxiosApi from "@/services/api";
-
+import ConsultaCard from "./ConsultaCard";
+import { consultasFake } from "../../utils/data/ficData";
+import { formatData } from "../../utils/functions";
 const PsicologoMessages = () => {
-  const [registros, setRegistros] = useState([]);
-
   const { privateApi } = AxiosApi();
+
+  const [avisos, setAvisos] = useState([]);
+  const [consultas, setConsultas] = useState([]);
+
+  const fetchConsultas = async () => {
+    try {
+      const response = await privateApi.get("/consulta");
+      console.log(response);
+      const formattedData = formatData(response);
+      console.log(formattedData);
+      setConsultas(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchItems = async () => {
     try {
-      const response = await privateApi.get("/registro");
-      setRegistros(response.data.registers);
+      const response = await privateApi.get("/mensagem");
+      console.log(response.data);
+      setAvisos(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -18,6 +34,7 @@ const PsicologoMessages = () => {
 
   useEffect(() => {
     fetchItems();
+    //fetchConsultas();
   }, []);
 
   const removeRegistro = async (id) => {
@@ -38,21 +55,34 @@ const PsicologoMessages = () => {
   };
 
   return (
-    <div className="h-full mt-10 flex flex-col items-center justify-center">
-      <h1 className="text-xl font-bold mb-5">Mensagens de (nome_psicologo)</h1>
-      <div className="flex sm:gap-5 md:gap-10 gap-0 ">
-        <div className="flex flex-col gap-4 h-[70vh]  w-[90vw] md:overflow-y-auto custom-scrollbar-mobile">
-          {registros.map((register) => (
-            <IndividualMessage
-              title={register.titulo}
-              description={register.text}
-              date={register.data}
-              id={register._id}
-              key={register._id}
-              removeRegistro={removeRegistro}
-              aviso={true}
-            />
-          ))}
+    <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)] mx-10 flex items-center justify-start gap-10">
+      <div className="flex flex-col">
+        <h1 className="text-xl font-bold mb-5">Avisos de (nome_psicologo)</h1>
+        <div className="flex sm:gap-5 md:gap-10 gap-0">
+          <ul className="flex flex-col gap-4 h-[65vh]  w-[70vw] md:overflow-y-auto custom-scrollbar-mobile">
+            {avisos.map((aviso) => (
+              <li>
+                <div>{aviso.text}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div className="flex flex-col w-[22vw] h-[65vh] mt-10 ">
+          <div className="md:overflow-y-auto custom-scrollbar-mobile h-full">
+            <ul className="flex flex-col gap-5">
+              {consultasFake.map((consulta) => (
+                <ConsultaCard
+                  startDate={consulta.startDate}
+                  key={consulta.id}
+                  dia={consulta.dia}
+                  hora={consulta.hora}
+                  mes={consulta.mes}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

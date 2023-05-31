@@ -3,46 +3,51 @@ import { useState } from "react";
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 
-import { MessageNotification, RequestNotification } from "./Notifications";
 import AxiosApi from "@/services/api";
+import { Divider } from "@mui/material";
+import toast, { Toaster } from "react-hot-toast";
+import { HiOutlineMail } from "react-icons/hi";
+import { TbSend } from "react-icons/tb";
 
-const NotificationCard = (props) => {
+const AddPatientCard = (props) => {
   const { privateApi } = AxiosApi();
   const Icon = props.icon;
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [email, setEmail] = useState("");
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
-    props.fetchNotifs();
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleRequestAccept = async (notifId) => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (email == "") {
+      return;
+    }
     const data = {
-      notifId: notifId,
+      pacEmail: email,
     };
+    console.log("Email:", email);
     try {
-      const response = await privateApi.post("/accept", data);
+      const response = await privateApi.post("/notif", data);
       console.log(response);
+      toast.success("Solicitação enviada!");
     } catch (error) {
       console.log(error);
-    } finally {
-      props.fetchNotifs();
+      toast.error("Usuário não encontrado.");
     }
+
+    setEmail("");
   };
 
-  const handleRequestReject = async (id) => {
-    try {
-      await privateApi.delete(`/notif/${id}`);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      props.fetchNotifs();
-    }
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   return (
@@ -50,12 +55,15 @@ const NotificationCard = (props) => {
       <IconButton
         onClick={handleClick}
         size="small"
+        sx={{ ml: 2 }}
         aria-controls={open ? "account-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
       >
         <Icon size={25} color="white" className="hover:rotate-[-6deg]" />
       </IconButton>
+      <Toaster />
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -67,7 +75,7 @@ const NotificationCard = (props) => {
             overflow: "visible",
             filter: "drop-shadow(0px 1px 1px rgba(0,0,0,0.32))",
             mt: 0.5,
-            width: "400px",
+            width: "260px",
             maxHeight: "300px",
             borderRadius: "10px",
             overflow: "",
@@ -108,26 +116,34 @@ const NotificationCard = (props) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <div className="flex flex-col">
-          <div className="flex flex-col gap-3 mt-2">
-            {props.requestNotifications.map((notif) => (
-              <RequestNotification
-                key={notif._id}
-                id={notif._id}
-                handleAccept={handleRequestAccept}
-                handleReject={handleRequestReject}
-                psicologoNome={notif.psicologoNome}
+        <div className="flex flex-col px-4 py-3">
+          <h1 className="mb-2 text-[0.95rem] text-gray-500">
+            Adicionar Paciente
+          </h1>
+          <Divider />
+          <div className="flex gap-3 mt-5 justify-between items-center ">
+            <form className="relative">
+              <input
+                className="rounded-lg p-1 pl-8 text-black  border-[2px] border-[#dedddd] outline-none box-border  text-sm"
+                placeholder="E-mail"
+                onChange={handleEmailChange}
+                type="email"
+                value={email}
               />
-            ))}
-            {props.messageNotifications.map((notif) => (
-              <MessageNotification
-                message={notif.text}
-                username={notif.senderName}
-                time={notif.time}
-                key={notif._id}
-                id={notif._id}
+              <HiOutlineMail
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400"
+                size={20}
               />
-            ))}
+            </form>
+
+            <button
+              type="submit"
+              className="focus:outline-none text-sm text-white bg-[#574dc1] hover:bg-[#40379f] 2  rounded-lg p-[0.4rem] flex items-center justify-center"
+              style={{ width: "30px" }}
+              onClick={submitHandler}
+            >
+              <TbSend size={17} />
+            </button>
           </div>
         </div>
       </Menu>
@@ -135,4 +151,4 @@ const NotificationCard = (props) => {
   );
 };
 
-export default NotificationCard;
+export default AddPatientCard;

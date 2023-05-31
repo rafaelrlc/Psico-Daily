@@ -124,3 +124,92 @@ experiência incrível e muito gratificante. `,
     date: new Date(7, 2, 15, 30),
   },
 ];
+
+export const consultasFake = [
+  {
+    startDate: new Date(2023, 5, 1),
+    id: 1,
+    dia: "25",
+    hora: "14:00",
+    mes: "06",
+  },
+  // Outros objetos de consulta podem ser adicionados aqui
+];
+
+export const patientFakeList = [
+  {
+    username: "João Pedro",
+    email: "joaopedro@gmail.com",
+    id: 1,
+  },
+  {
+    username: "Maria Silva",
+    email: "mariasilva@gmail.com",
+    id: 2,
+  },
+  {
+    username: "Carlos Ferreira",
+    email: "carlosferreira@gmail.com",
+    id: 3,
+  },
+  {
+    username: "Ana Santos",
+    email: "anasantos@gmail.com",
+    id: 4,
+  },
+  {
+    username: "Pedro Almeida",
+    email: "pedroalmeida@gmail.com",
+    id: 5,
+  },
+  {
+    username: "Mariana Rocha",
+    email: "marianarocha@gmail.com",
+    id: 6,
+  },
+  {
+    username: "André Costa",
+    email: "andrecosta@gmail.com",
+    id: 7,
+  },
+  {
+    username: "Sofia Ramos",
+    email: "sofiaramos@gmail.com",
+    id: 8,
+  },
+  {
+    username: "Ricardo Carvalho",
+    email: "ricardocarvalho@gmail.com",
+    id: 9,
+  },
+  {
+    username: "Beatriz Gonçalves",
+    email: "beatrizgoncalves@gmail.com",
+    id: 10,
+  },
+  {
+    username: "Gustavo Fernandes",
+    email: "gustavofernandes@gmail.com",
+    id: 11,
+  },
+  {
+    username: "Luana Oliveira",
+    email: "luanaoliveira@gmail.com",
+    id: 12,
+  },
+  {
+    username: "Lucas Mendes",
+    email: "lucasmendes@gmail.com",
+    id: 13,
+  },
+  {
+    username: "Carolina Sousa",
+    email: "carolinasousa@gmail.com",
+    id: 14,
+  },
+  {
+    username: "Henrique Castro",
+    email: "henriquecastro@gmail.com",
+    id: 15,
+  },
+];

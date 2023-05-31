@@ -1,9 +1,10 @@
 import Navbar from "@/components/Navbar";
+import Datepicker from "react-tailwindcss-datepicker";
 
 const Consultas = () => {
   return (
     <div>
-      <h1>consultas</h1>
+      <Datepicker />
     </div>
   );
 };

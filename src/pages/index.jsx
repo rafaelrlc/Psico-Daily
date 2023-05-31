@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Homepage from "@/components/Homepage";
+import Homepage from "@/components/Home/Homepage";
 import { useEffect } from "react";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
@@ -26,7 +26,10 @@ export default function Home() {
       <Head>
         <title>PsicoDaily</title>
         <meta name="description" content="" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href="https://media.discordapp.net/attachments/1025173249543393330/1112577069054951484/p-website-favicon-color.png?width=256&height=256"
+        />
       </Head>
       <Homepage></Homepage>
     </>

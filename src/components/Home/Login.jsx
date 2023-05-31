@@ -2,7 +2,7 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import { useContext } from "react";
 import AuthContext from "@/context/auth/authContext";
 import AxiosApi from "@/services/api";
@@ -37,7 +37,7 @@ const Login = (props) => {
         router.push("/paciente/registro");
       }
       if (response.data.type == "Psicologo") {
-        router.push("/psicologo/info");
+        router.push("/psicologo/pacientes");
       }
     } catch (error) {
       console.log(error);
@@ -87,11 +87,11 @@ const Login = (props) => {
   return (
     <>
       <form
-        className="flex items-center h-[100vh]"
+        className="flex items-center h-[calc(100vh-80px)]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-full flex items-center justify-center">
-          <div className=" w-[83%] md:w-[65%] flex justify-center items-center flex-col bg-white ">
+          <div className=" w-[83%] md:w-[65%] flex justify-center items-center flex-col bg-transparent ">
             <h1 className="text-black text-[2.2rem] ">Psicodaily</h1>
 
             {createAcc && (

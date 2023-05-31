@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useAuth } from "@/context/auth/authProvider";
-import useConfig from "../../../../utils/functions/useConfig";
+import useAuth from "@/hooks/useAuth";
 
 const UserImage = () => {
   const { accessToken } = useAuth();
 
   const [image, setImage] = useState(null);
-
-  const config = useConfig(accessToken);
 
   const submitHandler = () => {
     // Perform the API call to change the picture using the selected image

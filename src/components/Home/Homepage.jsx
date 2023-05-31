@@ -1,23 +1,32 @@
 import { useRouter } from "next/router";
-import Footer from "./Layouts/Footer";
+import Footer from "./Footer";
 import { Box } from "@mui/material";
+import useAuth from "@/hooks/useAuth";
 
 const Homepage = () => {
   const router = useRouter();
+  const { setEasterEgg, easterEgg } = useAuth();
   return (
     <div className="">
       <div className="flex justify-center items-center h-[100vh]">
         <div className="flex md:flex-row flex-col justify-center items-center 2xl:max-w-[1540px] max-w-[1240px]">
           <div className="flex flex-col mx-10  items-center lg:items-start justify-center">
-            <h1 className="lg:text-4xl text-3xl font-bold text-center lg:text-left">
+            <h1 className="lg:text-4xl text-3xl font-semibold text-center lg:text-left">
               Para quem é o PsicoDaily?
             </h1>
-            <h2 className="mt-5 text-center lg:text-left  font-medium text-xl w-full">
+            <h2 className="mt-5 text-center lg:text-left text-xl w-full">
               Caso esteja a procura de acompanhamento psicológico, ou deseja
-              divulgar seu trabalho como profissional, o PsicoDaily é pra você!
+              divulgar seu trabalho como profissional, o{" "}
+              <span
+                className="hover:text-indigo-600 hover:cursor-pointer"
+                onClick={() => setEasterEgg(!easterEgg)}
+              >
+                PsicoDaily
+              </span>{" "}
+              é pra você!
             </h2>
             <button
-              className="py-[1.15rem] md:w-[250px] w-full  shadow-lg bg-black text-white rounded text-2xl hover:cursor-pointer hover:rotate-[-1.25deg] mt-5"
+              className="py-[1.15rem] md:w-[250px] w-full  shadow-lg bg-black text-white rounded text-2xl hover:cursor-pointer hover:rotate-[-1.25deg] mt-5 "
               onClick={() => {
                 router.push("/registerpsicologo");
               }}
@@ -42,9 +51,9 @@ const Homepage = () => {
           my: 4,
         }}
       />
-      <div className="bg-white py-24 sm:py-24" id="about">
+      <div className="bg-transparent py-24 sm:py-24" id="about">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-700">
               Deploy faster
             </h2>
@@ -167,7 +176,7 @@ const Homepage = () => {
       <Box
         sx={{
           width: "80vw",
-
+          mx: "auto",
           borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
         }}
       />

@@ -7,6 +7,8 @@ const AuthContext = React.createContext({
   login: (token) => {},
   logout: () => {},
   setRole: () => {},
+  setEasterEgg: () => {},
+  easterEgg: false | true,
 });
 
 export default AuthContext;

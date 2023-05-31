@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import AuthContext from "./authContext";
 import { useRouter } from "next/router";
 
@@ -12,6 +12,8 @@ const AuthContextProvider = ({ children }) => {
   const [role, setRole] = useState(
     typeof window !== "undefined" ? localStorage.getItem("role") : null
   );
+
+  const [easterEgg, setEasterEgg] = useState(false);
 
   const loginHandler = (token, userRole) => {
     setToken(token);
@@ -43,6 +45,8 @@ const AuthContextProvider = ({ children }) => {
     logout: logoutHandler,
     setRole: setRole,
     role: role,
+    easterEgg,
+    setEasterEgg: setEasterEgg,
   };
 
   return (
@@ -51,4 +55,3 @@ const AuthContextProvider = ({ children }) => {
 };
 
 export default AuthContextProvider;
-export const useAuth = () => useContext(AuthContext);

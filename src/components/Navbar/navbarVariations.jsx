@@ -6,12 +6,18 @@ import AxiosApi from "@/services/api";
 import NotificationCard from "../Notifications/NotificationCard";
 
 import { NavItemIcon, NavItem } from "./NavItem";
-import { fake_psico_notifications } from "../../../utils/ficData";
+import { fake_psico_notifications } from "../../../utils/data/ficData";
 
 import { GoPerson } from "react-icons/go";
-import { AiOutlinePaperClip, AiFillBell } from "react-icons/ai";
+import {
+  AiOutlinePaperClip,
+  AiFillBell,
+  AiOutlineUserAdd,
+} from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { BsPeopleFill } from "react-icons/bs";
+import { FiUserPlus } from "react-icons/fi";
+import AddPatientCard from "../AddPatientCard";
 
 export const NavHelper = ({ type }) => {
   const { push } = useRouter();
@@ -31,8 +37,13 @@ export const NavHelper = ({ type }) => {
       console.log(error);
     }
 
-    // dar fetch nas mensagens
-    setMessageNotifications(fake_psico_notifications);
+    try {
+      const response = await privateApi.get("/mensagem");
+      console.log(response.data);
+      setMessageNotifications(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -51,11 +62,7 @@ export const NavHelper = ({ type }) => {
           label="Registro"
           action={() => push("/paciente/registro")}
         />
-        <NavItemIcon
-          icon={AiOutlinePaperClip}
-          label="Consulta"
-          action={() => push("/paciente/consultas")}
-        />
+
         <NavItemIcon
           icon={GoPerson}
           label="Seu Psicólogo"
@@ -81,37 +88,37 @@ export const NavHelper = ({ type }) => {
   );
 
   const psicoNav = (
-    <div className="flex space-x-8 items-center">
-      <NavItemIcon
-        action={() => push("/psicologo/consultas")}
-        icon={AiOutlinePaperClip}
-        label="Sessões"
-      />
-      <NavItemIcon
-        action={() => push("/psicologo/registros")}
-        icon={HiOutlineNewspaper}
-        label="Seus Registros"
-      />
-
-      <NavItemIcon
-        action={() => push("/psicologo/pacientes")}
-        icon={BsPeopleFill}
-        label="Pacientes"
-      />
-
-      <NavItemIcon
-        action={() => push("/psicologo/addpacientes")}
-        icon={BsPeopleFill}
-        label="Adicionar Pacientes"
-      />
-
-      <div className="flex gap-6 items-center">
-        <NotificationCard
-          icon={AiFillBell}
-          requestNotifications={[]}
-          messageNotifications={messageNotifications}
-          fetchNotifs={fetchNotifs}
+    <div className="flex gap-2 items-center">
+      <div className="flex gap-5">
+        {" "}
+        <NavItemIcon
+          action={() => push("/psicologo/pacientes")}
+          icon={BsPeopleFill}
+          label="Pacientes"
         />
+        <NavItemIcon
+          action={() => push("/psicologo/consultas")}
+          icon={AiOutlinePaperClip}
+          label="Consultas"
+        />
+      </div>
+
+      <div className="flex gap-5 items-center">
+        <div className="flex gap-3">
+          <AddPatientCard
+            icon={AiOutlineUserAdd}
+            requestNotifications={[]}
+            messageNotifications={messageNotifications}
+            fetchNotifs={fetchNotifs}
+          />
+          {/* <NotificationCard
+            icon={AiFillBell}
+            requestNotifications={[]}
+            messageNotifications={messageNotifications}
+            fetchNotifs={fetchNotifs}
+          /> */}
+        </div>
+
         <NavItemIcon
           action={() => push("/psicologo/settings/profile")}
           src={icon_url}
@@ -126,7 +133,7 @@ export const NavHelper = ({ type }) => {
       <NavItem action={() => push("/registerpaciente")} label="REGISTRAR" />
       <li className="hover:cursor-pointer hover:rotate-[-2deg] ">
         <a
-          className="block rounded hover:text-gray-300 p-2 text-base"
+          className="block rounded hover:text-gray-300 p-2 text-base font-light"
           href="#about"
         >
           SOBRE
@@ -197,16 +204,6 @@ export const MobileNavHelper = ({ setMobileNav, type }) => {
             Registros
           </a>
         </div>
-      </li>
-      <li className="p-4 cursor-pointer  ease-in-out w-full hover:text-gray-400">
-        <a
-          onClick={() => {
-            setMobileNav(false);
-            push("/paciente/consultas");
-          }}
-        >
-          Consultas
-        </a>
       </li>
       <li className="p-4   cursor-pointer  ease-in-out w-full hover:text-gray-400">
         <a

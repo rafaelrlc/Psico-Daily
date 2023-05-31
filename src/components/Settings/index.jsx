@@ -24,10 +24,12 @@ const Settings = ({ settingsType, userType }) => {
       componentToRender = null;
   }
   return (
-    <div className="flex justify-center items-center mx-10">
-      <div className="flex md:gap-20 md:w-full items-start justify-center mt-[22vh]">
+    <div className="flex justify-center items-center mx-10 md:h-[calc(100vh-80px)] h-[90vh]">
+      <div className="flex md:gap-20 md:w-full items-start justify-center ">
         <ConfigSidebar />
-        <div className="md:w-[55vw] mx-10">{componentToRender}</div>
+        <div className="md:w-[55vw] md:max-h-[380px] mx-10">
+          {componentToRender}
+        </div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export const MessageNotification = (props) => {
           <div className="text-sm font-semibold text-gray-900 ">
             {props.username}
           </div>
-          <div className="text-sm font-normal">{props.message}</div>
+          <div className="text-sm font-light">{props.message}</div>
           <span className="text-xs font-medium text-blue-600 ">
             {props.time}
           </span>
@@ -61,19 +61,19 @@ export const RequestNotification = (props) => {
           />
         </div>
         <div className="ml-3 text-sm font-normal">
-          <div className="text-sm font-semibold text-gray-900">
-            {props.username}{" "}
-            <span className="text-indigo-600">(Psicólogo)</span>
+          <div className="text-sm  text-gray-900 flex flex-col gap-1">
+            <span className="font-semibold">{props.psicologoNome}</span>
+            <span className="font-light">Deseja adicionar você</span>
           </div>
-          <div className="flex gap-3 mt-3">
+          <div className="flex gap-3 mt-3 ">
             <button
-              className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
+              className="bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded"
               onClick={handleAccept}
             >
               Aceitar
             </button>
             <button
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded"
               onClick={handleReject}
             >
               Recusar

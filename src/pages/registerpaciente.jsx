@@ -1,4 +1,4 @@
-import Login from "@/components/Login";
+import Login from "@/components/Home/Login";
 import { Fragment } from "react";
 import { registerPacienteSchema } from "../../utils/schemas/schemas";
 const LoginPage = () => {

@@ -3,7 +3,7 @@ import CheckBox from "./CheckBox";
 
 const UserAlerts = () => {
   return (
-    <div className="flex flex-col gap-16 justify-center py-10 text-xl">
+    <div className="flex flex-col gap-16 justify-center py-10 text-xl font-light">
       <CheckBox
         label={"Notificações de Email"}
         description={

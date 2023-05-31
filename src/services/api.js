@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useAuth } from "@/context/auth/authProvider";
-
+import useAuth from "@/hooks/useAuth";
 const BASE_URL = "http://localhost:3005";
 
 const AxiosApi = () => {
