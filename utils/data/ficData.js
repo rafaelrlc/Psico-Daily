@@ -125,17 +125,6 @@ experiência incrível e muito gratificante. `,
   },
 ];
 
-export const consultasFake = [
-  {
-    startDate: new Date(2023, 5, 1),
-    id: 1,
-    dia: "25",
-    hora: "14:00",
-    mes: "06",
-  },
-  // Outros objetos de consulta podem ser adicionados aqui
-];
-
 export const patientFakeList = [
   {
     username: "João Pedro",
@@ -211,5 +200,15 @@ export const patientFakeList = [
     username: "Henrique Castro",
     email: "henriquecastro@gmail.com",
     id: 15,
+  },
+];
+
+export const consultasFake = [
+  {
+    startDate: new Date(2023, 5, 1),
+    id: 1,
+    dia: "25",
+    hora: "14:00",
+    mes: "06",
   },
 ];

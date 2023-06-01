@@ -42,7 +42,7 @@ html {
 /* Custom Styles */
 
 .custom-shadow {
-  box-shadow: 0px 2px 2px 1.25px rgb(144, 143, 144);
+  box-shadow: 0px 1px 2px 1px rgb(144, 143, 144);
 }
 
 .custom-scrollbar-mobile::-webkit-scrollbar {

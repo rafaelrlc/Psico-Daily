@@ -8,6 +8,10 @@ import Datepicker from "tailwind-datepicker-react";
 
 import toast, { Toaster } from "react-hot-toast";
 
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+
 const options = {
   title: "",
   autoHide: true,
@@ -16,7 +20,7 @@ const options = {
   maxDate: new Date("2030-01-01"),
   minDate: new Date("1950-01-01"),
   theme: {
-    background: "bg-gray-100",
+    background: "bg-gray-100 ",
     todayBtn: "",
     clearBtn: "bg-gray-200 border-none hover:bg-gray-300",
     icons: "bg-gray-100 hover:bg-gray-100",
@@ -30,26 +34,37 @@ const options = {
     prev: () => <span className="text-sm">{"<"}</span>,
     next: () => <span className="text-sm">{">"}</span>,
   },
-  datepickerclassNames: "sm:top-20 top-0",
+  datepickerclassNames: "sm:top-20 top-0 ",
   defaultDate: null,
   language: "pt-BR",
 };
+
+const MAX_MESSAGE_LENGTH = 300;
+const MAX_DESC_LENGTH = 300;
 
 const PatientModal = (props) => {
   const { privateApi } = AxiosApi();
 
   const [psicMessage, setPsicMessage] = useState("");
 
+  const [consultaMessage, setConsultaMessage] = useState("");
+
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(Date());
-  const [time, setTime] = useState();
+  const [time, setTime] = useState("");
 
   const handleMessageChange = (e) => {
-    setPsicMessage(e.target.value);
+    const message = e.target.value;
+    if (message.length <= MAX_MESSAGE_LENGTH) {
+      setPsicMessage(message);
+    }
   };
 
-  const handleTimeChange = (e) => {
-    setTime(e.target.value);
+  const handleConsultaMessage = (e) => {
+    const message = e.target.value;
+    if (message.length <= MAX_DESC_LENGTH) {
+      setConsultaMessage(message);
+    }
   };
 
   const handleDateChange = (selectedDate) => {
@@ -70,6 +85,7 @@ const PatientModal = (props) => {
     const data = {
       receiverId: props.id,
       text: psicMessage,
+      data: Date(),
     };
     try {
       const response = await privateApi.post("/mensagem", data);
@@ -83,8 +99,51 @@ const PatientModal = (props) => {
   };
 
   const submitConsulta = async () => {
-    console.log(selectedDate, time);
+    console.log("day: ", selectedDate);
+    console.log("time: ", time.$d);
+
+    console.log(consultaMessage);
+
+    if (time === "") {
+      toast.error("Preencha um Horário");
+      return;
+    }
+
+    const resultDate = combineDateTime(selectedDate, time);
+    console.log(resultDate);
+
+    const data = {
+      startDate: resultDate,
+      pacId: props.id,
+      desc: consultaMessage,
+    };
+
+    try {
+      const response = await privateApi.post("/consulta", data);
+      console.log(response);
+      toast.success("Consulta Marcada");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao marcar consulta.");
+    }
   };
+
+  function combineDateTime(dateString, timeString) {
+    const date = new Date(dateString);
+    const time = new Date(timeString);
+
+    const combinedDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      time.getHours(),
+      time.getMinutes(),
+      time.getSeconds(),
+      time.getMilliseconds()
+    );
+
+    return combinedDate;
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
@@ -106,45 +165,49 @@ const PatientModal = (props) => {
           </div>
           <div className="p-3">
             {props.type === "sendMessage" && (
-              <div className="w-full border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                <form className="px-2 py-2 bg-white rounded-t-lg">
+              <div className="w-full border border-gray-200 rounded-lg bg-gray-50 shadow-sm ">
+                <form className="px-2 py-2 pb-0 bg-white rounded-t-lg relative">
                   <textarea
                     id="comment"
                     rows="12"
-                    className="w-full text-gray-900 bg-white outline-none text-sm "
+                    className="w-full text-gray-900 bg-white outline-none text-sm resize-none"
                     placeholder="Escreva uma mensagem..."
                     required
                     onChange={handleMessageChange}
                     value={psicMessage}
                   ></textarea>
-                </form>
-                <div className="flex items-center justify-between px-3 py-2 border-t">
-                  <p className="text-xs text-gray-400">
-                    Para: {props.userEmail}
+                  <p className="text-xs text-gray-400 absolute bottom-[4rem] right-2">
+                    {psicMessage.length}/{MAX_MESSAGE_LENGTH}
                   </p>
-                  <button
-                    type="button"
-                    onClick={submitMessage}
-                    className="focus:outline-none text-sm text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2 focus:ring-indigo-900 rounded-lg px-3 py-[0.35rem]"
-                  >
-                    Enviar Mensagem
-                  </button>
-                  <Toaster />
-                </div>
+                  <div className="flex items-center justify-between px-3 py-2 border-t mt">
+                    <p className="text-xs text-gray-400">
+                      Para: {props.userEmail}
+                    </p>
+                    <div className="flex items-center">
+                      <button
+                        type="button"
+                        onClick={submitMessage}
+                        className="focus:outline-none text-sm text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2 focus:ring-indigo-900 rounded-lg px-3 py-[0.35rem]"
+                      >
+                        Enviar Mensagem
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <Toaster />
               </div>
             )}
-
             {props.type === "calendar" && (
               <div>
                 <form>
                   <div className="mb-6">
                     <label
-                      for="password"
-                      className="block mb-2 text-sm font-medium text-gray-800"
+                      htmlFor="password"
+                      className="block mb-2 text-sm font-medium text-gray-800 ml-1"
                     >
                       Data
                     </label>
-                    <div className="shadow-xs">
+                    <div className="shadow-xs bg-white">
                       <Datepicker
                         options={options}
                         onChange={handleDateChange}
@@ -153,29 +216,43 @@ const PatientModal = (props) => {
                       />
                     </div>
                   </div>
-                  <div className="mb-6">
-                    <label className="block mb-2 text-sm font-medium text-gray-800">
+                  <div className="mb-3 relative">
+                    <label className="block mb-2 text-sm font-medium text-gray-800 ml-1">
                       Horário
                     </label>
-                    <input
-                      type="text"
-                      id="hora"
-                      placeholder="15:30"
-                      className="bg-gray-50 focus:outline-none border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 shadow-xs"
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <TimePicker
+                        className="text-sm"
+                        onChange={(newValue) => setTime(newValue)}
+                      />
+                    </LocalizationProvider>
+                    <label className="block mb-2 text-sm font-medium text-gray-800 mt-5 ml-1">
+                      Descrição
+                    </label>
+                    <textarea
+                      id="comment"
+                      rows="12"
+                      className="w-full text-gray-900  outline-none text-sm border rounded p-2 border-gray-300 resize-none"
+                      placeholder="Escreva uma mensagem..."
                       required
-                      onChange={handleTimeChange}
-                    />
+                      onChange={handleConsultaMessage}
+                      value={consultaMessage}
+                    ></textarea>
+                    <div className="flex items-center justify-between mt-2">
+                      <p className="text-xs text-gray-400 absolute bottom-[3.5rem] right-2">
+                        {consultaMessage.length}/{MAX_DESC_LENGTH}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={submitConsulta}
+                        className="focus:outline-none text-sm text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2 focus:ring-indigo-900 rounded-lg px-3 py-[0.5rem]"
+                      >
+                        Salvar
+                      </button>
+                    </div>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={submitConsulta}
-                    className="focus:outline-none text-sm text-white bg-[#574dc1] hover:bg-[#40379f] focus:ring-2 focus:ring-indigo-900 rounded-lg px-3 py-[0.5rem]"
-                  >
-                    Salvar
-                  </button>
-                  <Toaster />
                 </form>
+                <Toaster />
               </div>
             )}
           </div>

@@ -6,7 +6,6 @@ import AxiosApi from "@/services/api";
 import NotificationCard from "../Notifications/NotificationCard";
 
 import { NavItemIcon, NavItem } from "./NavItem";
-import { fake_psico_notifications } from "../../../utils/data/ficData";
 
 import { GoPerson } from "react-icons/go";
 import {
@@ -16,7 +15,6 @@ import {
 } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { BsPeopleFill } from "react-icons/bs";
-import { FiUserPlus } from "react-icons/fi";
 import AddPatientCard from "../AddPatientCard";
 
 export const NavHelper = ({ type }) => {
@@ -30,6 +28,8 @@ export const NavHelper = ({ type }) => {
     "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png"; // vai sumir dps
 
   const fetchNotifs = async () => {
+    console.log(type);
+    if (type !== "Paciente") return;
     try {
       const response = await privateApi.get("/notif");
       setRequestNotifications(response.data);
@@ -47,9 +47,9 @@ export const NavHelper = ({ type }) => {
   };
 
   useEffect(() => {
+    console.log(type);
     fetchNotifs();
 
-    //get user icon
     icon_url =
       "https://media.discordapp.net/attachments/714891795129171983/1102445653050789928/user.png";
   }, []);
@@ -96,27 +96,16 @@ export const NavHelper = ({ type }) => {
           icon={BsPeopleFill}
           label="Pacientes"
         />
-        <NavItemIcon
-          action={() => push("/psicologo/consultas")}
-          icon={AiOutlinePaperClip}
-          label="Consultas"
-        />
       </div>
 
       <div className="flex gap-5 items-center">
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           <AddPatientCard
             icon={AiOutlineUserAdd}
             requestNotifications={[]}
             messageNotifications={messageNotifications}
             fetchNotifs={fetchNotifs}
           />
-          {/* <NotificationCard
-            icon={AiFillBell}
-            requestNotifications={[]}
-            messageNotifications={messageNotifications}
-            fetchNotifs={fetchNotifs}
-          /> */}
         </div>
 
         <NavItemIcon
@@ -232,40 +221,25 @@ export const MobileNavHelper = ({ setMobileNav, type }) => {
 
   const psicoMobileNav = (
     <div className="flex flex-col gap-8">
-      <li
-        className={`p-4 cursor-pointer ease-in-out w-full hover:text-gray-400`}
-      >
-        <a
-          onClick={() => {
-            setMobileNav(false);
-            push("/login");
-          }}
-        >
-          Info
-        </a>
-      </li>
       <li className="p-4 cursor-pointer  ease-in-out w-full hover:text-gray-400">
         <a
           onClick={() => {
             setMobileNav(false);
-            push("/register");
+            push("/psicologo/pacientes");
           }}
         >
-          Próximas Sessões
+          Pacientes
         </a>
       </li>
+
       <li className="p-4   cursor-pointer  ease-in-out w-full hover:text-gray-400">
-        <a href="#about" onClick={() => props.setMobileNav(false)}>
-          Seus Registros
-        </a>
-      </li>
-      <li className="p-4   cursor-pointer  ease-in-out w-full hover:text-gray-400">
-        <a href="#about" onClick={() => props.setMobileNav(false)}>
-          Novo Registros
-        </a>
-      </li>
-      <li className="p-4   cursor-pointer  ease-in-out w-full hover:text-gray-400">
-        <a href="#about" onClick={() => props.setMobileNav(false)}>
+        <a
+          href="#about"
+          onClick={() => {
+            setMobileNav(false);
+            push("/psicologo/settings/profile");
+          }}
+        >
           Configurações
         </a>
       </li>

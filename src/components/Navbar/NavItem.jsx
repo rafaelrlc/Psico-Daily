@@ -22,11 +22,11 @@ export const NavItemIcon = (props) => {
     >
       <div className="flex items-center gap-4">
         {props.icon ? (
-          <Icon size={18} />
+          <Icon className="text-2xl sm:text-lg" />
         ) : (
           <img src={props.src} className="w-[45px] text-white" />
         )}
-        <a className="block rounded hover:text-gray-300 font-light">
+        <a className="md:block hidden rounded hover:text-gray-300 font-light ">
           {props.label}
         </a>
       </div>

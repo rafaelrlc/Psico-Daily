@@ -36,10 +36,10 @@ const Navbar = () => {
             )}
           </a>
         </div>
-        <ul className="lg:flex text-[0.95rem] hidden">
+        <ul className="lg:flex text-[0.95rem] ">
           <NavHelper type={role} />
         </ul>
-        {!mobileNav && (
+        {/* {!mobileNav && (
           <div
             onClick={() => setMobileNav(!mobileNav)}
             className="block lg:hidden ml-100"
@@ -48,7 +48,7 @@ const Navbar = () => {
               <AiOutlineMenu className="hover:cursor-pointer text-3xl" />
             </div>
           </div>
-        )}
+        )} */}
       </div>
 
       <div

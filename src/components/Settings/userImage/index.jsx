@@ -1,19 +1,42 @@
 import React, { useState } from "react";
+import AxiosApi from "@/services/api";
 import useAuth from "@/hooks/useAuth";
-
 const UserImage = () => {
-  const { accessToken } = useAuth();
+  const { privateApi } = AxiosApi();
 
   const [image, setImage] = useState(null);
 
-  const submitHandler = () => {
-    // Perform the API call to change the picture using the selected image
+  const { accessToken } = useAuth();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
   };
 
-  const handleFileUpload = (event) => {
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   setImage(file);
+  //   console.log(image);
+  // };
+
+  const handleFileUpload = async (event) => {
     const file = event.target.files[0];
-    setImage(file);
-    console.log(image);
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("http://localhost:3005/upload", {
+        method: "POST",
+        headers: {
+          "x-access-token": accessToken, // Replace with your JWT token
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data); // The response from the API
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const fileInputText = image ? image.name : "Alterar";
@@ -24,7 +47,10 @@ const UserImage = () => {
         Perfil Público
       </h2>
 
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-6">
+      <form
+        className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-6"
+        onSubmit={submitHandler}
+      >
         <div className="col-span-full">
           <label
             htmlFor="about"
@@ -79,9 +105,15 @@ const UserImage = () => {
                 </span>
               </div>
             </div>
+            <button
+              type="submit"
+              className="w-[100%] md:w-[100px] h-[45px] py-2 rounded-xl bg-[#574dc1] hover:bg-[#41389d] text-white"
+            >
+              Salvar
+            </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

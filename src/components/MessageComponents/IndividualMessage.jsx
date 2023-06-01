@@ -19,20 +19,20 @@ const IndividualMessage = ({
 
   return (
     <div
-      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-[1px] border-gray-400 p-5 rounded-xl sm:mr-3 mr-0 text-center sm:text-start shadow md:max-h-[180px] max-h-[250px] font-light"
+      className="relative flex lg:flex-row flex-col gap-7 items-center justify-between h-full border-b-[1px] border-b-gray-300 p-5  sm:mr-3 mr-0 text-center sm:text-start  md:max-h-[180px] max-h-[250px] font-light"
       onMouseEnter={() => setShowCloseButton(true)}
       onMouseLeave={() => setShowCloseButton(false)}
     >
-      <div className="flex flex-col md:flex-row gap-3 items-center justify-center">
-        <div className="flex gap-5 items-center justify-center">
-          <div className="hidden xl:flex flex-col font-bold text-xl">
+      <div className="flex flex-col md:flex-row gap-3 items-center justify-center ">
+        <div className="flex gap-5 items-center justify-center mb-1">
+          <div className="hidden xl:flex flex-col  text-xl">
             <p>
               {diaFormatado}/{mesFormatado}
             </p>
             <p>{hora}</p>
           </div>
           <div className="break-all">
-            <span className="font-bold text-[#3d358d] break-all">
+            <span className="font-bold text-[#3d358d] text-lg break-all">
               {title} :
             </span>{" "}
             {description}

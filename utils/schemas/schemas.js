@@ -70,7 +70,7 @@ export const newRegistroSchema = yup.object({
     .required("Campo obrigatório. Informe um título."),
   description: yup
     .string()
-    .max(300, "Limite máximo de 300 caracteres.")
+    .max(2000, "Limite máximo de 300 caracteres.")
     .required("Campo obrigatório. Informe uma descrição."),
 });
 

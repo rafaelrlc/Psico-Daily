@@ -67,7 +67,9 @@ const NotificationCard = (props) => {
             overflow: "visible",
             filter: "drop-shadow(0px 1px 1px rgba(0,0,0,0.32))",
             mt: 0.5,
-            width: "400px",
+            width: {
+              lg: "400px",
+            },
             maxHeight: "300px",
             borderRadius: "10px",
             overflow: "",

@@ -64,7 +64,7 @@ const PacienteRegistros = () => {
       >
         <BsPencilSquare />
       </div>
-      <div className="md:h-[calc(100vh-80px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
+      <div className="md:h-[calc(100vh-120px)] h-[calc(90vh-65px)]  flex flex-col items-center justify-center">
         <div className={`flex md:gap-10`}>
           {!isEmpty && (
             <div
@@ -72,9 +72,9 @@ const PacienteRegistros = () => {
                 newRegister && "hidden md:block"
               }`}
             >
-              <Divider style={{ width: "80%" }}>
+              <Divider style={{ width: "100%" }}>
                 <h1 className="text-xl mb-3 font-light text-gray-500 text-center">
-                  Registros
+                  Seus Registros
                 </h1>
               </Divider>
 
@@ -111,7 +111,7 @@ const PacienteRegistros = () => {
               !newRegister && "hidden md:flex"
             }`}
           >
-            <Divider style={{ width: "80%" }}>
+            <Divider style={{ width: "100%" }}>
               <h1 className="text-xl mb-3 font-light text-gray-500 text-center">
                 Novo Registro
               </h1>

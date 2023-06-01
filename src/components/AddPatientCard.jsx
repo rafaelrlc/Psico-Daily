@@ -51,7 +51,7 @@ const AddPatientCard = (props) => {
   };
 
   return (
-    <div>
+    <div className="flex items-center">
       <IconButton
         onClick={handleClick}
         size="small"
@@ -147,6 +147,9 @@ const AddPatientCard = (props) => {
           </div>
         </div>
       </Menu>
+      <h1 onClick={handleClick} className="hover:cursor-pointer">
+        Adicionar Paciente
+      </h1>
     </div>
   );
 };

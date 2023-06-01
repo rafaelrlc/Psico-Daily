@@ -14,7 +14,7 @@ export default function Home() {
       if (auth.role == "Paciente") {
         router.push("/paciente/registro");
       } else if (auth.role == "Psicologo") {
-        router.push("/psicologo/info");
+        router.push("/psicologo/pacientes");
       } else {
         router.push("/");
       }

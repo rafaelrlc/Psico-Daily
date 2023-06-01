@@ -95,7 +95,7 @@ const EditData = () => {
             <div className={`mb-4 basis-1/2`}>
               <label className="block text-gray-700 text-sm mb-2">Nome</label>
               <input
-                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6 "
+                className="appearance-none border-[1px] border-gray-300 rounded w-full shadow-xs py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6 "
                 type="text"
                 placeholder="Seu nome"
                 {...register("nome")}
@@ -111,7 +111,7 @@ const EditData = () => {
                 CPF
               </label>
               <input
-                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
+                className="appearance-none border-[1px] border-gray-300 rounded w-full shadow-xs py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                 type="text"
                 placeholder="CPF"
                 disabled
@@ -128,7 +128,7 @@ const EditData = () => {
                 E-mail
               </label>
               <input
-                className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
+                className="appearance-none border-[1px] border-gray-300 rounded w-full shadow-xs py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                 type="email"
                 placeholder="E-mail"
                 {...register("userEmail")}
@@ -146,7 +146,7 @@ const EditData = () => {
               </label>
               <div className="relative">
                 <input
-                  className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
+                  className="appearance-none border-[1px] border-gray-300 rounded w-full shadow-xs py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                   type={showPassowrdCurrent ? "text" : "password"}
                   placeholder="Senha Atual"
                   {...register("currentPassword")}
@@ -178,7 +178,7 @@ const EditData = () => {
               </label>
               <div className="relative">
                 <input
-                  className="appearance-none border-[1px] border-gray-300 rounded-md w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
+                  className="appearance-none border-[1px] border-gray-300 rounded w-full shadow-sm py-2 px-2 text-gray-800 leading-tight focus:outline-none focus:outline sm:text-[0.9rem] sm:leading-6"
                   type={showPassowrdNew ? "text" : "password"}
                   placeholder="Senha Nova"
                   {...register("newPassword")}
