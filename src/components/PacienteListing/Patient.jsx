@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 
 import { VscCalendar } from "react-icons/vsc";
-
+import Tooltip from "@mui/material/Tooltip";
 import PatientModal from "../PatientModal";
 import { useRouter } from "next/router";
 const Patient = ({ username, email, id }) => {
@@ -54,18 +54,23 @@ const Patient = ({ username, email, id }) => {
                   className="text-gray-700 hover:text-gray-500"
                 />
               </button> */}
-              <button onClick={() => openModal("sendMessage")}>
-                <AiOutlineMessage
-                  size={26}
-                  className="text-gray-700 hover:text-gray-500"
-                />
-              </button>
-              <button onClick={() => openModal("calendar")}>
-                <VscCalendar
-                  size={26}
-                  className="text-gray-700 hover:text-gray-500"
-                />
-              </button>
+              <Tooltip title="Enviar Mensagem">
+                <button onClick={() => openModal("sendMessage")}>
+                  <AiOutlineMessage
+                    size={26}
+                    className="text-gray-700 hover:text-gray-500"
+                  />
+                </button>
+              </Tooltip>
+
+              <Tooltip title="Marcar Consulta">
+                <button onClick={() => openModal("calendar")}>
+                  <VscCalendar
+                    size={26}
+                    className="text-gray-700 hover:text-gray-500"
+                  />
+                </button>
+              </Tooltip>
             </div>
 
             {showModal && (

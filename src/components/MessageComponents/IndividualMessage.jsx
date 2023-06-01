@@ -32,7 +32,7 @@ const IndividualMessage = ({
             <p>{hora}</p>
           </div>
           <div className="break-all">
-            <span className="font-bold text-[#3d358d] text-lg break-all">
+            <span className="font-light text-[#3d358d] text-lg break-all">
               {title} :
             </span>{" "}
             {description}
@@ -40,7 +40,7 @@ const IndividualMessage = ({
         </div>
 
         <div className="flex lg:flex-col flex-row gap-5 items-center justify-center text-3xl">
-          <div className="flex  xl:hidden flex-col font-bold text-xl">
+          <div className="flex  xl:hidden flex-col font-light text-xl">
             <p>
               {diaFormatado}/{mesFormatado}
             </p>

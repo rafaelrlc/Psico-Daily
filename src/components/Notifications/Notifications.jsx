@@ -3,7 +3,7 @@ import { Divider } from "@mui/material";
 
 export const MessageNotification = (props) => {
   return (
-    <div className="px-5 py-1 h-20">
+    <div className="px-5 py-1 ">
       <div className="flex items-center">
         <div className="relative inline-block shrink-0">
           <img
