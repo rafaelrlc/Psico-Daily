@@ -10,6 +10,11 @@
 # Project Description
 A website to help the communication between the patient. This fullstack project, the frontend was made in Next.js and Tailwind and the backend in Express and MongoDB and deployed with Railwind.
 
+This project was made for the discipline of P3 (Web Programming)
+
+Backend Repository : https://github.com/pedrovictor48/psicodaily-api
+
+
 # Funtionalities
 
 - Patient Auth;
@@ -20,6 +25,18 @@ A website to help the communication between the patient. This fullstack project,
 - Send message to your patients;
 - Schedule an appointment;
 - Cancel an appointment;
+
+
+# Technologies
+
+- React.js;
+- Next.js;
+- Tailwind;
+- Express;
+- MongoDB;
+- Vercel/Railwind
+- Some NPM libaries
+
 
 
 <br>
