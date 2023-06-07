@@ -1,6 +1,6 @@
 import axios from "axios";
 import useAuth from "@/hooks/useAuth";
-const BASE_URL = "http://localhost:3005";
+const BASE_URL = "https://psicodaily-api-production-5d36.up.railway.app";
 
 const AxiosApi = () => {
   const { accessToken } = useAuth();

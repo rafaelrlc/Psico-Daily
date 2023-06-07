@@ -24,13 +24,16 @@ const UserImage = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:3005/upload", {
-        method: "POST",
-        headers: {
-          "x-access-token": accessToken, // Replace with your JWT token
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        "https://psicodaily-api-production-da44.up.railway.app/upload",
+        {
+          method: "POST",
+          headers: {
+            "x-access-token": accessToken, // Replace with your JWT token
+          },
+          body: formData,
+        }
+      );
 
       const data = await response.json();
       console.log(data); // The response from the API

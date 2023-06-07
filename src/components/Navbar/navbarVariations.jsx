@@ -8,14 +8,10 @@ import NotificationCard from "../Notifications/NotificationCard";
 import { NavItemIcon, NavItem } from "./NavItem";
 
 import { GoPerson } from "react-icons/go";
-import {
-  AiOutlinePaperClip,
-  AiFillBell,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
+import { AiFillBell, AiOutlineUserAdd } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { BsPeopleFill } from "react-icons/bs";
-import AddPatientCard from "../AddPatientCard";
+import AddPatientCard from "../Notifications/AddPatientCard";
 
 export const NavHelper = ({ type }) => {
   const { push } = useRouter();

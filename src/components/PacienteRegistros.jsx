@@ -4,6 +4,7 @@ import IndividualMessage from "./MessageComponents/IndividualMessage";
 import NewRegistro from "./MessageComponents/NewRegistro";
 import { BsPencilSquare } from "react-icons/bs";
 import { Divider } from "@mui/material";
+
 const PacienteRegistros = () => {
   const [registros, setRegistros] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

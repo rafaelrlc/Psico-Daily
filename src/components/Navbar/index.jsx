@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
-import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
 import { useState } from "react";
 import { NavHelper, MobileNavHelper } from "./navbarVariations";
 import useAuth from "@/hooks/useAuth";
 import dynamic from "next/dynamic";
-import Modal from "../../../utils/ModalTest";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);

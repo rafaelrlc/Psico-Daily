@@ -5,7 +5,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 
 import { VscCalendar } from "react-icons/vsc";
 import Tooltip from "@mui/material/Tooltip";
-import PatientModal from "../PatientModal";
+import PatientModal from "./PatientModal";
 import { useRouter } from "next/router";
 const Patient = ({ username, email, id }) => {
   const [showModal, setShowModal] = useState(false);

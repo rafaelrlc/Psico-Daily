@@ -27,3 +27,20 @@ export const formatData = (data) => {
 
   return formattedData;
 };
+
+export function combineDateTime(dateString, timeString) {
+  const date = new Date(dateString);
+  const time = new Date(timeString);
+
+  const combinedDate = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    time.getHours(),
+    time.getMinutes(),
+    time.getSeconds(),
+    time.getMilliseconds()
+  );
+
+  return combinedDate;
+}
