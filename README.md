@@ -12,7 +12,7 @@ A website to help the communication between the patient. This fullstack project,
 
 This project was made for the discipline of P3 (Web Programming)
 
-Backend Repository : https://github.com/pedrovictor48/psicodaily-api
+
 
 
 # Funtionalities
