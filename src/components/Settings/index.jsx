@@ -4,7 +4,6 @@ import EditData from "./profile";
 import UserAlerts from "./alerts";
 import UserImage from "./userImage";
 import UserSupport from "./support";
-import { useAuth } from "@/context/auth/authProvider";
 const Settings = ({ settingsType, userType }) => {
   let componentToRender;
   switch (settingsType) {
